@@ -2,11 +2,11 @@
  * @Author: dushuai
  * @Date: 2024-04-23 18:33:22
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-24 12:19:15
+ * @LastEditTime: 2024-04-24 14:35:17
  * @description: index
  */
 import { View, Text, Button } from '@tarojs/components'
-import { useLoad } from '@tarojs/taro'
+import Taro, { useLoad } from '@tarojs/taro'
 import './index.scss'
 
 export default function Index() {
@@ -16,7 +16,7 @@ export default function Index() {
   })
 
   function handleLogin() {
-
+    Taro.navigateTo({ url: '/pages/login/index' })
   }
 
   return (
