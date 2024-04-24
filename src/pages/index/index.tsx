@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-04-23 18:33:22
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-24 14:35:17
+ * @LastEditTime: 2024-04-24 16:39:07
  * @description: index
  */
 import { View, Text, Button } from '@tarojs/components'
@@ -16,7 +16,7 @@ export default function Index() {
   })
 
   function handleLogin() {
-    Taro.navigateTo({ url: '/pages/login/index' })
+    Taro.navigateTo({ url: '/pages/my/index' })
   }
 
   return (
@@ -24,6 +24,10 @@ export default function Index() {
       <Text className='title'>Hello world!</Text>
       <Text>{process.env.TARO_ENV}</Text>
       <Button onClick={handleLogin}>按钮</Button>
+      <Button onClick={() => Taro.navigateTo({ url: '/pagesLogin/login/index' })}>登陆</Button>
+      <Button onClick={() => Taro.navigateTo({ url: '/pagesLogin/register/index' })}>注册</Button>
+      <Button onClick={() => Taro.navigateTo({ url: '/pagesDetail/info/index' })}>info</Button>
+      <Button onClick={() => Taro.navigateTo({ url: '/pagesDetail/webview/index' })}>webview</Button>
     </View>
   )
 }

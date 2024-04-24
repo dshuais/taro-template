@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-04-23 18:33:22
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-24 16:30:43
+ * @LastEditTime: 2024-04-24 16:39:36
  * @description: defineAppConfig
  */
 export default defineAppConfig({
@@ -18,7 +18,7 @@ export default defineAppConfig({
       root: 'pagesLogin',
       pages: [
         "login/index",
-        "resiger/index"
+        "register/index"
       ],
       independent: false // 是否是独立分包
     },
@@ -46,8 +46,8 @@ export default defineAppConfig({
 
   window: {
     backgroundTextStyle: 'light',
-    navigationBarBackgroundColor: '#fff',
-    navigationBarTitleText: 'WeChat',
-    navigationBarTextStyle: 'black'
+    navigationBarBackgroundColor: '#000',
+    navigationBarTitleText: 'Taro Demo',
+    navigationBarTextStyle: 'white'
   }
 })
