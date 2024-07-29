@@ -7,6 +7,9 @@
  */
 import { View, Text, Button } from '@tarojs/components'
 import Taro, { useLoad } from '@tarojs/taro'
+
+import { PAGE_LIST } from '@/constants/PAGE'
+
 import './index.scss'
 
 export default function Index() {
@@ -16,7 +19,7 @@ export default function Index() {
   })
 
   function handleLogin() {
-    Taro.navigateTo({ url: '/pages/my/index' })
+    Taro.switchTab({ url: '/pages/personal/index' });
   }
 
   return (

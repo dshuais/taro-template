@@ -5,43 +5,22 @@
  * @LastEditTime: 2024-04-24 16:42:40
  * @description: defineAppConfig
  */
+import { PAGE_LIST, SUB_PACKAGES, PRELOAD_RULE } from '@/constants/PAGE'
+
 export default defineAppConfig({
   // 页面
   pages: [
-    'pages/index/index',
-    'pages/my/index'
+    ...PAGE_LIST
   ],
 
   //  配置分包
   subPackages: [
-    {
-      root: 'pagesLogin',
-      pages: [
-        "login/index",
-        "register/index"
-      ],
-      independent: false // 是否是独立分包
-    },
-    {
-      root: 'pagesDetail',
-      pages: [
-        "info/index",
-        "webview/index"
-      ],
-      independent: false
-    }
+    ...SUB_PACKAGES
   ],
 
   // 分包预加载
   preloadRule: {
-    "pages/index/index": {
-      network: 'all',
-      packages: ['pagesDetail'] //   __APP__ 主包
-    },
-    "pages/my/index": {
-      network: 'all',
-      packages: ['pagesLogin']
-    }
+    ...PRELOAD_RULE
   },
 
   window: {
@@ -60,13 +39,13 @@ export default defineAppConfig({
     borderStyle: 'black',
     list: [
       {
-        pagePath: 'pages/index/index',
+        pagePath: 'pages/home/index',
         // iconPath: 'static/images/tabbar/home.png',
         // selectedIconPath: 'static/images/tabbar/home_active.png',
         text: '首页',
       },
       {
-        pagePath: 'pages/my/index',
+        pagePath: 'pages/personal/index',
         text: '我的',
       }
     ]
