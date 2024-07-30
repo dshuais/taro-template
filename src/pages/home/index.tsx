@@ -6,13 +6,19 @@
  * @description: index
  */
 import { View, Text, Button } from "@tarojs/components";
-import Taro, { useLoad } from "@tarojs/taro";
+import Taro, { useDidShow, useLoad } from "@tarojs/taro";
 
 import { PAGE } from "@/constants/PAGE";
 
 import "./index.scss";
 
 export default function Home() {
+
+  useDidShow(() => {
+    console.log("Page show:>> ");
+    console.log('当前环境:>> ', process.env.NODE_ENV, process.env.TARO_APP_TITLE);
+  })
+
   useLoad(() => {
     console.log("Page loaded.");
   });
