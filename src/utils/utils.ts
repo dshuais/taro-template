@@ -330,3 +330,54 @@ export function classNames(...args: any[]) {
     return name;
   }).join(' ');
 }
+
+/**
+ * This is just a simple version of deep copy
+ * Has a lot of edge cases bug
+ * If you want to use a perfect deep copy, use lodash's _.cloneDeep
+ * @param {Object} source
+ * @returns {Object}
+ */
+export function deepClone<T>(source: T): T {
+  if (!source && typeof source !== 'object') {
+    throw new Error('error arguments deepClone')
+  }
+  const targetObj = (source!.constructor === Array ? [] : {}) as T
+
+  Object.keys(source!).forEach(keys => {
+    type K = keyof typeof source
+    if (source![keys as K] && typeof source![keys as K] === 'object') {
+      targetObj[keys as K] = deepClone(source![keys as K])
+    } else {
+      targetObj[keys as K] = source![keys as K]
+    }
+  })
+
+  return targetObj
+}
+
+/**
+ * 复制方法
+ * @param {string} text 要复制的内容
+ * @param {boolean} origin 通过什么类型复制 input:false复制内容在一行 textarea:true可换行 可选，默认textarea
+ * @returns {Promise<boolean>} 是否复制成功
+ */
+export const $copy = (text: string, origin: boolean = true): Promise<boolean> => {
+  return new Promise((resolve, reject) => {
+    let input: HTMLInputElement | HTMLTextAreaElement
+    if (origin) input = document.createElement('textarea')
+    else input = document.createElement('input')
+
+    input.setAttribute('readonly', 'readonly')
+    input.value = text
+    document.body.appendChild(input)
+    input.select()
+    if (document.execCommand('copy')) {
+      document.execCommand('copy')
+      resolve(true)
+    } else {
+      reject(false)
+    }
+    document.body.removeChild(input)
+  })
+}

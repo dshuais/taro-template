@@ -1,10 +1,9 @@
 import Taro from '@tarojs/taro';
-import config from '@/config';
 
 export function Upload({ path, url, name }) {
   return new Promise((resolve, reject) => {
     Taro.uploadFile({
-      url: `${config.requestUrl}/${url}`, //接口地址
+      url: `${process.env.TARO_APP_BASE_URL}/${url}`, //接口地址
       filePath: path,
       name,
       header: {
