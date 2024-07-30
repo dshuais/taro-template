@@ -25,27 +25,29 @@ export default defineAppConfig({
 
   window: {
     backgroundTextStyle: 'light',
-    navigationBarBackgroundColor: '#000',
+    navigationBarBackgroundColor: '#fff',
     navigationBarTitleText: 'Taro Demo',
-    navigationBarTextStyle: 'white'
+    navigationBarTextStyle: 'black'
   },
 
   // tabbar
   tabBar: {
     custom: false, // 是否自定义tabbar
-    color: '#fff',
-    selectedColor: '#885525',
-    backgroundColor: '#000',
-    borderStyle: 'black',
+    color: '#000',
+    selectedColor: '#4989ff',
+    backgroundColor: '#fff',
+    borderStyle: 'white',
     list: [
       {
         pagePath: 'pages/home/index',
-        // iconPath: 'static/images/tabbar/home.png',
-        // selectedIconPath: 'static/images/tabbar/home_active.png',
+        iconPath: 'assets/images/tabbar/home.png',
+        selectedIconPath: 'assets/images/tabbar/home_actived.png',
         text: '首页',
       },
       {
         pagePath: 'pages/personal/index',
+        iconPath: 'assets/images/tabbar/personal.png',
+        selectedIconPath: 'assets/images/tabbar/personal_actived.png',
         text: '我的',
       }
     ]

@@ -43,6 +43,17 @@
     "Android >= 4.1",
     "ios >= 8"
   ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
   "author": "",
   "dependencies": {
     "@babel/runtime": "^7.21.5",
