@@ -1,7 +1,155 @@
 {
   "extends": ["taro/react"],
+  "parser": "babel-eslint",
+  "globals": {
+    "defineAppConfig": true,
+    "definePageConfig": true
+  },
   "rules": {
     "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "import/no-commonjs": ["off"],
+    "import/prefer-default-export": "off",
+    "import/no-named-as-default": ["off"],
+    "import/no-named-as-default-member": ["off"],
+    "no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "Taro|React"
+      }
+    ],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx", ".tsx"]
+      }
+    ],
+    "no-shadow": ["warn"],
+    "quotes": ["error", "single"], //引号类型
+    "semi": ["error", "always"],
+    "react-hooks/exhaustive-deps": "off", // 不检查effect的依赖
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    // @fixable 函数名和执行它的括号之间禁止有空格
+    "func-call-spacing": "error",
+    // @fixable 一行有多个语句时，分号前面禁止有空格，分号后面必须有空格
+    "semi-spacing": [
+      "error",
+      {
+        "before": false,
+        "after": true
+      }
+    ],
+    // @fixable 禁止出现连续的多个空格，除非是注释前，或对齐对象的属性、变量定义、import 等
+    "no-multi-spaces": [
+      "error",
+      {
+        "ignoreEOLComments": true,
+        "exceptions": {
+          "Property": true,
+          "BinaryExpression": false,
+          "VariableDeclarator": true,
+          "ImportDeclaration": true
+        }
+      }
+    ],
+    // @fixable 禁止出现超过1行的连续空行
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxEOF": 1,
+        "maxBOF": 1
+      }
+    ],
+    // @fixable 禁止属性前有空格，比如 foo. bar()
+    "no-whitespace-before-property": "error",
+    // @fixable 小括号内的首尾禁止有空格
+    "space-in-parens": ["error", "never"],
+    // @fixable 操作符左右必须有空格，比如 let sum = 1 + 2;
+    "space-infix-ops": "error",
+    // @fixable new, typeof 等后面必须有空格，++, -- 等禁止有空格，比如：
+    // let foo = new Person();
+    // bar = bar++;
+    "space-unary-ops": [
+      "error",
+      {
+        "words": true,
+        "nonwords": false
+      }
+    ],
+    // @fixable case 的冒号前禁止有空格，冒号后必须有空格
+    "switch-colon-spacing": [
+      "error",
+      {
+        "after": true,
+        "before": false
+      }
+    ],
+    // @fixable 逗号前禁止有空格，逗号后必须要有空格
+    "comma-spacing": "error",
+    // @fixable 强制在花括号中使用一致的空格
+    "object-curly-spacing": [
+      "error",
+      "always",
+      {
+        "arraysInObjects": true,
+        "objectsInObjects": false
+      }
+    ],
+    // @fixable 对象字面量中冒号前面禁止有空格，后面必须有空格
+    "key-spacing": [
+      "error",
+      {
+        "beforeColon": false,
+        "afterColon": true,
+        "mode": "strict"
+      }
+    ],
+    // @fixable 关键字前后必须有空格
+    // "keyword-spacing": [
+    //   "error",
+    //   {
+    //     "before": true, "after": true,
+    //     "overrides": {
+    //       "if": { "after": false },
+    //       "for": { "after": false },
+    //       "while": { "after": false },
+    //       "catch": { "after": false }
+    //     }
+    //   }
+    // ],
+    // @fixable disallow variable redeclaration 禁止重复声明
+    "no-redeclare": ["error"],
+    // @fixable 单行最大长度
+    "max-len": [
+      "error",
+      {
+        "code": 200
+      }
+    ],
+    // @fixable disallow duplicate keys in object literals
+    "no-dupe-keys": ["error"],
+    // 行末空格
+    "no-trailing-spaces": ["error"],
+    // object-curly-newline
+    "object-curly-newline": [
+      "error",
+      {
+        "consistent": true
+      }
+    ],
+    // jsx属性 react/jsx-max-props-per-line
+    "react/jsx-max-props-per-line": [
+      1,
+      {
+        "when": "multiline"
+      }
+    ]
   }
 }
