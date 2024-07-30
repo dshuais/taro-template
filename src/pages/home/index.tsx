@@ -8,18 +8,18 @@
 import { View, Text, Button } from '@tarojs/components'
 import Taro, { useLoad } from '@tarojs/taro'
 
-import { PAGE_LIST } from '@/constants/PAGE'
+import { PAGE } from '@/constants/PAGE'
 
 import './index.scss'
 
-export default function Index() {
+export default function Home() {
 
   useLoad(() => {
     console.log('Page loaded.')
   })
 
   function handleLogin() {
-    Taro.switchTab({ url: '/pages/personal/index' });
+    Taro.switchTab({ url: PAGE.PERSONAL });
   }
 
   return (

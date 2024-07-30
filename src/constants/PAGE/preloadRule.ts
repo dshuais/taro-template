@@ -5,17 +5,17 @@ import { loadPackageNames } from "./modules";
  */
 
 const RULE = {
-  'pages/home/index': {
-    network: 'all',
+  "pages/home/index": {
+    network: "all",
     packages: [
-     'pagesDetail' // 填写PAGE/modules/对应包的name值也可： 详情页 = pagesDetail
-    ]
+      "pagesDetail", // 填写PAGE/modules/对应包的name值也可： 详情页 = pagesDetail
+    ],
   },
-  'pages/personal/index': {
-    network: 'all',
+  "pages/personal/index": {
+    network: "all",
     packages: [
-      '登录注册' // = pagesLogin
-    ]
+      "登录注册", // = pagesLogin
+    ],
   },
 };
 

@@ -21,3 +21,5 @@ const page = {
 };
 
 export default { root, name, page };
+
+export type LoginPage = typeof page;
