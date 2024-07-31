@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2023-04-03 14:33:53
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-30 14:44:03
+ * @LastEditTime: 2024-07-31 22:04:07
  * @description: 统一处理报错
  */
 import type { AxiosResponse } from "axios";
@@ -29,11 +29,9 @@ export default (response: AxiosResponse): void => {
     useAppStore.getState().REMOVE_TOKEN()
 
   } else if (to404Url.includes(code)) { // 跳降级页
-    
 
-  } else {
+  } else { // 其他错误 统一处理
     // console.log('请求失败err:>> ', response.data);
-    // message.error(response.data.msg)
   }
 
 }

@@ -2,13 +2,13 @@
  * @Author: dushuai
  * @Date: 2023-03-14 17:53:45
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-30 14:42:43
+ * @LastEditTime: 2024-07-31 21:34:40
  * @description: axios
  */
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import qs from 'qs'
 import { useAppStore } from '@/store'
-import { cancelRequest } from './requestCancel'
+// import { cancelRequest } from './requestCancel'
 import ErrorCodeHandle from './requestCode'
 
 /** 不需要处理异常白名单 */
@@ -30,7 +30,7 @@ service.interceptors.request.use(
       config.headers['token'] = token
     }
 
-    cancelRequest.addPending(config) // 添加当前请求至请求列表
+    // cancelRequest.addPending(config) // 添加当前请求至请求列表
 
     // console.log('请求拦截 config:>> ', config)
     return config
@@ -45,7 +45,7 @@ service.interceptors.response.use(
   (response: AxiosResponse<any, any>) => {
     const url = response.config.url as string
 
-    cancelRequest.removePending(response.config) // 删除重复请求
+    // cancelRequest.removePending(response.config) // 删除重复请求
 
     /**
      * 处理错误响应

@@ -14,7 +14,7 @@ const RULE = {
   "pages/personal/index": {
     network: "all",
     packages: [
-      "登录注册", // = pagesLogin
+      "登录module", // = pagesLogin
     ],
   },
 };
