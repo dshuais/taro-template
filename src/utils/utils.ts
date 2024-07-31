@@ -1,5 +1,4 @@
 import Taro from "@tarojs/taro";
-import Storage from '@/utils/storage';
 import { APP_VERSION } from '@/constants/common';
 
 /** 获取系统信息 */
@@ -233,7 +232,7 @@ export function iosNotSupportToast(complete: any) {
 
 export function getVersionInfo() {
   const sysInfo = getSystemInfo();
-  let versionInfo = Storage.getSync(APP_VERSION) || {};
+  let versionInfo = Taro.getStorageSync(APP_VERSION) || {};
   const { emergencyStatus, androidEmergency, iosUseBackUp } = versionInfo;
   let showEmergency = sysInfo.isIOS ? emergencyStatus : androidEmergency;
   // 小程序申诉中

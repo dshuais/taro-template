@@ -25,7 +25,7 @@ export default defineConfig(async (merge, { command, mode }) => {
 
     sourceRoot: 'src',
     outputRoot: 'dist',
-    plugins: [],
+    plugins: ['@tarojs/plugin-http'],
     defineConstants: {
     },
     copy: {
