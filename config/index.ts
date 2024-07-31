@@ -25,7 +25,13 @@ export default defineConfig(async (merge, { command, mode }) => {
 
     sourceRoot: 'src',
     outputRoot: 'dist',
-    plugins: ['@tarojs/plugin-http'],
+    plugins: [
+      '@tarojs/plugin-http',
+      ['@tarojs/plugin-html', {
+        // 包含 `demo-`、`van-` 的类名选择器中的 px 单位不会被解析
+        pxtransformBlackList: [/demo-/, /van-/]
+      }]
+    ],
     defineConstants: {
     },
     copy: {
