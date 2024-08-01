@@ -2,12 +2,12 @@
  * @Author: dushuai
  * @Date: 2024-04-24 16:01:26
  * @LastEditors: dushuai
- * @LastEditTime: 2024-07-31 22:32:44
- * @description: My
+ * @LastEditTime: 2024-08-01 20:47:34
+ * @description: Personal
  */
 import { View } from "@tarojs/components";
 
-export default function My() {
+export default function Personal() {
   return (
     <View>
       <View>我的</View>

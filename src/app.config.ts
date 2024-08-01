@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-04-23 18:33:22
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-24 16:42:40
+ * @LastEditTime: 2024-08-01 21:22:05
  * @description: defineAppConfig
  */
 import { PAGE_LIST, SUB_PACKAGES, PRELOAD_RULE } from '@/constants/PAGE'
@@ -51,5 +51,7 @@ export default defineAppConfig({
         text: '我的',
       }
     ]
-  }
+  },
+
+  lazyCodeLoading: 'requiredComponents'
 })

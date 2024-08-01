@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-07-30 22:03:50
  * @LastEditors: dushuai
- * @LastEditTime: 2024-07-31 21:56:40
+ * @LastEditTime: 2024-08-01 21:17:35
  * @Description: 描述
  */
 /*
@@ -88,6 +88,11 @@ export default function Home() {
       >
         webview
       </Button>
+
+      <div className="flex items-center">
+        <button className="w-24 h-12 bg-pink-300 text-white text-2xl">我是按钮</button>
+        <button>2</button>
+      </div>
     </View>
   );
 }
