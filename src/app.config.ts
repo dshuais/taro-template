@@ -53,5 +53,7 @@ export default defineAppConfig({
     ]
   },
 
+  usingComponents: {},
+  requiredBackgroundModes: [], // 'audio', 'location'
   lazyCodeLoading: 'requiredComponents'
 })
