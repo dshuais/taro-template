@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-07-30 22:03:50
  * @LastEditors: dushuai
- * @LastEditTime: 2024-08-01 21:17:35
+ * @LastEditTime: 2024-08-02 22:22:02
  * @Description: 描述
  */
 /*
@@ -18,7 +18,7 @@ import Taro, { useDidShow, useLoad } from "@tarojs/taro";
 import { PAGE } from "@/constants/PAGE";
 import { useAppStore } from "@/store";
 import { GetTest, GetTest2, GetTest3, GetTest4 } from "@/api/api";
-import { deepClone } from "@/utils/utils";
+import { getSystemInfo } from "@/utils/utils";
 
 import "./index.scss";
 
@@ -32,8 +32,8 @@ export default function Home() {
 
   useDidShow(() => {
     console.log("Page show:>> ", token);
-    // console.log('当前环境:>> ', process.env.NODE_ENV, process.env.TARO_APP_TITLE);
-    console.log('getSystemInfo:>> ', deepClone('12'), typeof '124');
+    console.log('当前环境:>> ', process.env.NODE_ENV, process.env.TARO_APP_TITLE);
+    console.log('getSystemInfo:>> ', getSystemInfo());
   })
 
   function handleLogin() {

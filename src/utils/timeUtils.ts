@@ -1,10 +1,23 @@
+/*
+ * @Author: dushuai
+ * @Date: 2024-07-30 22:03:50
+ * @LastEditors: dushuai
+ * @LastEditTime: 2024-08-02 21:10:10
+ * @Description: 描述
+ */
 import dayjs from './dayjs'
 
-export function timeFormat({ date, fmt }){
-  if(typeof date === 'string'){
+/**
+ * 手写的时间格式化函数
+ * @param date 任何格式的时间
+ * @param fmt yyyy-MM-dd hh:mm:ss
+ * @returns fmt
+ */
+export function timeFormat(date: any, fmt: string = 'yyyy-MM-dd hh:mm:ss') {
+  if (typeof date === 'string') {
     date = date.replace(/-/g, '/');
   }
-  if(!isDate(date)){
+  if (!isDate(date)) {
     date = new Date(date);
   }
   let o = {
@@ -35,11 +48,16 @@ export function timeFormat({ date, fmt }){
   return fmt;
 }
 
-export function isDate(obj: null){
+export function isDate(obj: unknown) {
   const type = obj === null ? String(obj) : {}.toString.call(obj) || 'object';
   return type === '[object date]';
 }
 
+/**
+ * 获取几天后是几月几日
+ * @param {number} AddDayCount 几天后
+ * @returns string
+ */
 export function GetDateStr(AddDayCount: number) {
   var dd = new Date();
   dd.setDate(dd.getDate() + AddDayCount);
@@ -49,6 +67,12 @@ export function GetDateStr(AddDayCount: number) {
   return y + '年' + m + '月' + d + '日';
 };
 
-export function formatDate(date: string | number | Date | dayjs.Dayjs | null | undefined, format = 'YYYY-MM-DD') {
-  return dayjs(date).format(format);
+/**
+ * dayjs格式化时间
+ * @param date 任何格式的时间
+ * @param fmt YYYY-MM-DD HH:mm:ss (注意与timeFormat区别)
+ * @returns fmt
+ */
+export function formatDate(date: any, fmt = 'YYYY-MM-DD HH:mm:ss') {
+  return dayjs(date).format(fmt);
 }
