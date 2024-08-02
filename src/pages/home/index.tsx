@@ -18,6 +18,7 @@ import Taro, { useDidShow, useLoad } from "@tarojs/taro";
 import { PAGE } from "@/constants/PAGE";
 import { useAppStore } from "@/store";
 import { GetTest, GetTest2, GetTest3, GetTest4 } from "@/api/api";
+import { deepClone } from "@/utils/utils";
 
 import "./index.scss";
 
@@ -25,14 +26,15 @@ export default function Home() {
 
   const { token, SET_TOKEN, REMOVE_TOKEN, SET_STATE } = useAppStore(state => state);
 
-  useDidShow(() => {
-    console.log("Page show:>> ", token);
-    console.log('当前环境:>> ', process.env.NODE_ENV, process.env.TARO_APP_TITLE);
-  })
-
   useLoad(() => {
     console.log("Page loaded.");
   });
+
+  useDidShow(() => {
+    console.log("Page show:>> ", token);
+    // console.log('当前环境:>> ', process.env.NODE_ENV, process.env.TARO_APP_TITLE);
+    console.log('getSystemInfo:>> ', deepClone('12'), typeof '124');
+  })
 
   function handleLogin() {
     Taro.switchTab({ url: PAGE.PERSONAL });
@@ -58,7 +60,7 @@ export default function Home() {
 
   return (
     <View className='index'>
-      <Text className='title'>Hello world! {token}</Text>
+      <Text className='title'>Hello world! 2 ==== {token}</Text>
       <Text>{process.env.TARO_ENV}</Text>
       <Button type='primary' onClick={() => handleTest(0)}>http</Button>
       <Button type='primary' onClick={() => handleTest(1)}>http post</Button>
@@ -89,8 +91,8 @@ export default function Home() {
         webview
       </Button>
 
-      <div className="flex items-center">
-        <button className="w-24 h-12 bg-pink-300 text-white text-2xl">我是按钮</button>
+      <div className='flex items-center'>
+        <button className='w-24 h-12 bg-pink-300 text-white text-2xl'>我是按钮</button>
         <button>2</button>
       </div>
     </View>
