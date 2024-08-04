@@ -1,15 +1,8 @@
 /*
  * @Author: dushuai
- * @Date: 2024-07-30 22:03:50
- * @LastEditors: dushuai
- * @LastEditTime: 2024-08-02 22:22:02
- * @Description: 描述
- */
-/*
- * @Author: dushuai
  * @Date: 2024-04-23 18:33:22
- * @LastEditors: dushuai
- * @LastEditTime: 2024-04-24 16:39:07
+ * @LastEditors: dushuais 1137896420@qq.com
+ * @LastEditTime: 2024-08-04 15:54:09
  * @description: index
  */
 import { View, Text, Button } from "@tarojs/components";

@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-04-23 18:33:22
  * @LastEditors: dushuai
- * @LastEditTime: 2024-08-01 21:22:05
+ * @LastEditTime: 2024-08-04 15:21:53
  * @description: defineAppConfig
  */
 import { PAGE_LIST, SUB_PACKAGES, PRELOAD_RULE } from '@/constants/PAGE'
@@ -32,7 +32,7 @@ export default defineAppConfig({
 
   // tabbar
   tabBar: {
-    custom: false, // 是否自定义tabbar
+    custom: true, // 是否自定义tabbar
     color: '#000',
     selectedColor: '#4989ff',
     backgroundColor: '#fff',
