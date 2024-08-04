@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2023-03-14 17:53:45
  * @LastEditors: dushuai
- * @LastEditTime: 2024-07-31 21:34:40
+ * @LastEditTime: 2024-08-04 11:49:02
  * @description: axios
  */
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
@@ -88,7 +88,7 @@ service.interceptors.response.use(
  * 基础的请求
 */
 /** POST表单格式 */
-export function post<T = any>(url: string, params?: object): Promise<Res.ResponseRes<T>> {
+export function post<T = any>(url: string, params?: unknown): Promise<Res.ResponseRes<T>> {
   return new Promise<Res.ResponseRes<T>>((resolve, reject) => {
     service
       .post(url, qs.stringify(params), {
@@ -111,7 +111,7 @@ export function post<T = any>(url: string, params?: object): Promise<Res.Respons
 }
 
 /** POST JSON格式 */
-export function postJSON<T = any>(url: string, params?: object): Promise<Res.ResponseRes<T>> {
+export function postJSON<T = any>(url: string, params?: unknown): Promise<Res.ResponseRes<T>> {
   return new Promise<Res.ResponseRes<T>>((resolve, reject) => {
     service
       .post(url, params)
@@ -130,7 +130,7 @@ export function postJSON<T = any>(url: string, params?: object): Promise<Res.Res
 }
 
 /** GET请求 */
-export function get<T = any>(url: string, params?: object): Promise<Res.ResponseRes<T>> {
+export function get<T = any>(url: string, params?: unknown): Promise<Res.ResponseRes<T>> {
   return new Promise<Res.ResponseRes<T>>((resolve, reject) => {
     service
       .get(url, { params })
@@ -151,7 +151,7 @@ export function get<T = any>(url: string, params?: object): Promise<Res.Response
 /**
  * PUT请求
  */
-export function put<T = any>(url: string, params?: object): Promise<Res.ResponseRes<T>> {
+export function put<T = any>(url: string, params?: unknown): Promise<Res.ResponseRes<T>> {
   return new Promise<Res.ResponseRes<T>>((resolve, reject) => {
     service
       .put(url, params)
@@ -172,7 +172,7 @@ export function put<T = any>(url: string, params?: object): Promise<Res.Response
 /**
  * DELETE请求
  */
-export function del<T = any>(url: string, params?: object): Promise<Res.ResponseRes<T>> {
+export function del<T = any>(url: string, params?: unknown): Promise<Res.ResponseRes<T>> {
   return new Promise<Res.ResponseRes<T>>((resolve, reject) => {
     service
       .delete(url, { params })
