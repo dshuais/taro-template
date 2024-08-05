@@ -10,7 +10,7 @@ import { useLaunch } from '@tarojs/taro'
 
 import '@/assets/style/app.scss';
 
-function App({ children }: PropsWithChildren<any>) {
+function App({ children }: PropsWithChildren<unknown>) {
 
   useLaunch(() => {
     console.log('App launched.')
