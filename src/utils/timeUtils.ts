@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-08-02 21:10:10
  * @Description: 描述
  */
-import dayjs from './dayjs'
+import dayjs from './dayjs';
 
 /**
  * 手写的时间格式化函数
@@ -39,9 +39,7 @@ export function timeFormat(date: any, fmt: string = 'yyyy-MM-dd hh:mm:ss') {
     if (new RegExp('(' + k + ')').test(fmt)) {
       fmt = fmt.replace(
         RegExp.$1,
-        RegExp.$1.length == 1
-          ? o[k]
-          : ('00' + o[k]).substr(('' + o[k]).length)
+        RegExp.$1.length == 1 ? o[k] : ('00' + o[k]).substr(('' + o[k]).length)
       );
     }
   }
@@ -62,10 +60,11 @@ export function GetDateStr(AddDayCount: number) {
   var dd = new Date();
   dd.setDate(dd.getDate() + AddDayCount);
   var y = dd.getFullYear();
-  var m = (dd.getMonth() + 1) < 10 ? '0' + (dd.getMonth() + 1) : (dd.getMonth() + 1);
+  var m =
+    dd.getMonth() + 1 < 10 ? '0' + (dd.getMonth() + 1) : dd.getMonth() + 1;
   var d = dd.getDate() < 10 ? '0' + dd.getDate() : dd.getDate();
   return y + '年' + m + '月' + d + '日';
-};
+}
 
 /**
  * dayjs格式化时间

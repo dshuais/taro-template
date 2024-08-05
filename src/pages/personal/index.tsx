@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-08-01 20:47:34
  * @description: Personal
  */
-import { View } from "@tarojs/components";
+import { View } from '@tarojs/components';
 
 export default function Personal() {
   return (
@@ -15,5 +15,5 @@ export default function Personal() {
       <p>我是p</p>
       <span>我是span</span>
     </View>
-  )
+  );
 }

@@ -5,29 +5,34 @@
  * @LastEditTime: 2024-08-04 15:54:09
  * @description: index
  */
-import { View, Text, Button } from "@tarojs/components";
-import Taro, { useDidShow, useLoad } from "@tarojs/taro";
+import { View, Text, Button } from '@tarojs/components';
+import Taro, { useDidShow, useLoad } from '@tarojs/taro';
 
-import { PAGE } from "@/constants/PAGE";
-import { useAppStore } from "@/store";
-import { GetTest, GetTest2, GetTest3, GetTest4 } from "@/api/api";
-import { getSystemInfo } from "@/utils/utils";
+import { PAGE } from '@/constants/PAGE';
+import { useAppStore } from '@/store';
+import { GetTest, GetTest2, GetTest3, GetTest4 } from '@/api/api';
+import { getSystemInfo } from '@/utils/utils';
 
-import "./index.scss";
+import './index.scss';
 
 export default function Home() {
-
-  const { token, SET_TOKEN, REMOVE_TOKEN, SET_STATE } = useAppStore(state => state);
+  const { token, SET_TOKEN, REMOVE_TOKEN, SET_STATE } = useAppStore(
+    state => state
+  );
 
   useLoad(() => {
-    console.log("Page loaded.");
+    console.log('Page loaded.');
   });
 
   useDidShow(() => {
-    console.log("Page show:>> ", token);
-    console.log('当前环境:>> ', process.env.NODE_ENV, process.env.TARO_APP_TITLE);
+    console.log('Page show:>> ', token);
+    console.log(
+      '当前环境:>> ',
+      process.env.NODE_ENV,
+      process.env.TARO_APP_TITLE
+    );
     console.log('getSystemInfo:>> ', getSystemInfo());
-  })
+  });
 
   function handleLogin() {
     Taro.switchTab({ url: PAGE.PERSONAL });
@@ -52,40 +57,52 @@ export default function Home() {
   }
 
   return (
-    <View className='index'>
-      <Text className='title'>Hello world! 2 ==== {token}</Text>
+    <View className="index">
+      <Text className="title">Hello world! 2 ==== {token}</Text>
       <Text>{process.env.TARO_ENV}</Text>
-      <Button type='primary' onClick={() => handleTest(0)}>http</Button>
-      <Button type='primary' onClick={() => handleTest(1)}>http post</Button>
-      <Button type='primary' onClick={() => handleTest(2)}>http postJSON</Button>
-      <Button type='primary' onClick={() => handleTest(3)}>http postERR</Button>
-      <Button type='primary' onClick={() => SET_STATE({ token: '123456' })}>按钮+</Button>
+      <Button type="primary" onClick={() => handleTest(0)}>
+        http
+      </Button>
+      <Button type="primary" onClick={() => handleTest(1)}>
+        http post
+      </Button>
+      <Button type="primary" onClick={() => handleTest(2)}>
+        http postJSON
+      </Button>
+      <Button type="primary" onClick={() => handleTest(3)}>
+        http postERR
+      </Button>
+      <Button type="primary" onClick={() => SET_STATE({ token: '123456' })}>
+        按钮+
+      </Button>
       <Button onClick={() => SET_TOKEN('456789')}>set</Button>
       <Button onClick={() => REMOVE_TOKEN()}>reset</Button>
       <Button onClick={handleLogin}>按钮跳转</Button>
       <Button
-        onClick={() => Taro.navigateTo({ url: "/pagesLogin/login/index" })}
+        onClick={() => Taro.navigateTo({ url: '/pagesLogin/login/index' })}
       >
         登陆
       </Button>
       <Button
-        onClick={() => Taro.navigateTo({ url: "/pagesLogin/register/index" })}
+        onClick={() => Taro.navigateTo({ url: '/pagesLogin/register/index' })}
       >
         注册
       </Button>
       <Button
-        onClick={() => Taro.navigateTo({ url: "/pagesDetail/info/index" })}
+        onClick={() => Taro.navigateTo({ url: '/pagesDetail/info/index' })}
       >
         info
       </Button>
       <Button
-        onClick={() => Taro.navigateTo({ url: "/pagesDetail/webview/index" })}
+        onClick={() => Taro.navigateTo({ url: '/pagesDetail/webview/index' })}
       >
         webview
       </Button>
 
-      <div className='flex items-center'>
-        <button className='w-24 h-12 bg-pink-300 text-white text-2xl'>我是按钮</button>
+      <div className="flex items-center">
+        <button className="w-24 h-12 bg-pink-300 text-white text-2xl">
+          我是按钮
+        </button>
         <button>2</button>
       </div>
     </View>

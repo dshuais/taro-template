@@ -5,18 +5,14 @@
  * @LastEditTime: 2024-08-04 15:21:53
  * @description: defineAppConfig
  */
-import { PAGE_LIST, SUB_PACKAGES, PRELOAD_RULE } from '@/constants/PAGE'
+import { PAGE_LIST, SUB_PACKAGES, PRELOAD_RULE } from '@/constants/PAGE';
 
 export default defineAppConfig({
   // 页面
-  pages: [
-    ...PAGE_LIST
-  ],
+  pages: [...PAGE_LIST],
 
   //  配置分包
-  subPackages: [
-    ...SUB_PACKAGES
-  ],
+  subPackages: [...SUB_PACKAGES],
 
   // 分包预加载
   preloadRule: {
@@ -42,13 +38,13 @@ export default defineAppConfig({
         pagePath: 'pages/home/index',
         iconPath: 'assets/images/tabbar/home.png',
         selectedIconPath: 'assets/images/tabbar/home_actived.png',
-        text: '首页',
+        text: '首页'
       },
       {
         pagePath: 'pages/personal/index',
         iconPath: 'assets/images/tabbar/personal.png',
         selectedIconPath: 'assets/images/tabbar/personal_actived.png',
-        text: '我的',
+        text: '我的'
       }
     ]
   },
@@ -56,4 +52,4 @@ export default defineAppConfig({
   usingComponents: {},
   requiredBackgroundModes: [], // 'audio', 'location'
   lazyCodeLoading: 'requiredComponents'
-})
+});

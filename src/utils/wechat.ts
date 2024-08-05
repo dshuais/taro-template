@@ -15,11 +15,13 @@ export function getCode() {
 }
 /** 静默授权用户 wechatId */
 export function getAuthToken() {
-  getCode().then(async code => {
-    // const wechatId = await authorize({ code, appId: config.appId });
-  }).catch((err) => {
-    console.error(err || '静默授权失败');
-  });
+  getCode()
+    .then(async code => {
+      // const wechatId = await authorize({ code, appId: config.appId });
+    })
+    .catch(err => {
+      console.error(err || '静默授权失败');
+    });
 }
 
 /**
@@ -35,9 +37,25 @@ export function authUserProfile(success: () => void, error: () => void) {
     desc: '用于精准提供本书服务' // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
   })
     .then(res => {
-      if(res.userInfo) {
-        const { avatarUrl, city, country, gender, language, nickName, province } = res.userInfo;
-        console.log(avatarUrl, city, country, gender, language, nickName, province);
+      if (res.userInfo) {
+        const {
+          avatarUrl,
+          city,
+          country,
+          gender,
+          language,
+          nickName,
+          province
+        } = res.userInfo;
+        console.log(
+          avatarUrl,
+          city,
+          country,
+          gender,
+          language,
+          nickName,
+          province
+        );
         // return updateUserBaseInfo({
         //   nickname: nickName,
         //   language,
@@ -77,7 +95,7 @@ export function authUserProfile(success: () => void, error: () => void) {
 
 /** 保存临时图片到本地 */
 export function saveImagePhotosAlbum(tempFilePath: string) {
-  if(!tempFilePath) return;
+  if (!tempFilePath) return;
   Taro.saveImageToPhotosAlbum({
     filePath: tempFilePath,
     success: () => {
@@ -111,7 +129,7 @@ export function saveImagePhotosAlbum(tempFilePath: string) {
                   Taro.showModal({
                     title: '提示',
                     content: '授权失败，请稍后重新获取',
-                    showCancel: false,
+                    showCancel: false
                   });
                 }
               }
@@ -128,7 +146,7 @@ export function saveImageToPhotosAlbum(url: string) {
   if (!url) return;
   Taro.downloadFile({
     url,
-    success: (res) => {
+    success: res => {
       saveImagePhotosAlbum(res.tempFilePath);
     }
   });

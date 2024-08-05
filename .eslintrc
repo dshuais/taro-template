@@ -13,10 +13,26 @@
     "import/no-named-as-default": ["off"],
     "import/no-named-as-default-member": ["off"],
     "no-unused-vars": ["error", { "varsIgnorePattern": "Taro|React" }],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }],
+    "react/jsx-filename-extension": [
+      1,
+      { "extensions": [".js", ".jsx", ".tsx"] }
+    ],
     "no-shadow": ["warn"],
-    "quotes": ["error", "single"], //引号类型
-    "semi": ["error", "always"],
+    "quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true,
+        "allowTemplateLiterals": true
+      }
+    ], //引号类型
+    "semi": [
+      "error",
+      "always",
+      {
+        "omitLastInOneLineBlock": true
+      }
+    ],
     "react-hooks/exhaustive-deps": "off", // 不检查effect的依赖
     "indent": ["error", 2, { "SwitchCase": 1 }],
     // @fixable 函数名和执行它的括号之间禁止有空格
@@ -37,7 +53,10 @@
       }
     ],
     // @fixable 禁止出现超过1行的连续空行
-    "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 1, "maxBOF": 1 }],
+    "no-multiple-empty-lines": [
+      "error",
+      { "max": 1, "maxEOF": 1, "maxBOF": 1 }
+    ],
     // @fixable 禁止属性前有空格，比如 foo. bar()
     "no-whitespace-before-property": "error",
     // @fixable 小括号内的首尾禁止有空格
@@ -53,9 +72,16 @@
     // @fixable 逗号前禁止有空格，逗号后必须要有空格
     "comma-spacing": "error",
     // @fixable 强制在花括号中使用一致的空格
-    "object-curly-spacing": [ "error", "always", { "arraysInObjects": true,   "objectsInObjects": false } ],
+    "object-curly-spacing": [
+      "error",
+      "always",
+      { "arraysInObjects": true, "objectsInObjects": false }
+    ],
     // @fixable 对象字面量中冒号前面禁止有空格，后面必须有空格
-    "key-spacing": [ "error", { "beforeColon": false, "afterColon": true, "mode": "strict"}],
+    "key-spacing": [
+      "error",
+      { "beforeColon": false, "afterColon": true, "mode": "strict" }
+    ],
     // @fixable 关键字前后必须有空格
     // "keyword-spacing": [
     //   "error",
@@ -80,6 +106,6 @@
     // object-curly-newline
     "object-curly-newline": ["error", { "consistent": true }],
     // jsx属性 react/jsx-max-props-per-line
-    "react/jsx-max-props-per-line":  [1, { "when": "multiline" }]
+    "react/jsx-max-props-per-line": [1, { "when": "multiline" }]
   }
 }

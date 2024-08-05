@@ -1,4 +1,4 @@
-import Taro from "@tarojs/taro";
+import Taro from '@tarojs/taro';
 import { APP_VERSION } from '@/constants/common';
 
 /** 获取系统信息 */
@@ -7,7 +7,9 @@ export function getSystemInfo() {
   // 导航栏高度
   let rect: any = null; //胶囊按钮位置信息
   try {
-    rect = Taro.getMenuButtonBoundingClientRect ? Taro.getMenuButtonBoundingClientRect() : null;
+    rect = Taro.getMenuButtonBoundingClientRect
+      ? Taro.getMenuButtonBoundingClientRect()
+      : null;
     if (rect === null) {
       throw 'getMenuButtonBoundingClientRect error';
     }
@@ -33,7 +35,8 @@ export function getSystemInfo() {
     }
     if (!systemInfo.statusBarHeight) {
       // 开启wifi的情况下修复statusBarHeight值获取不到
-      systemInfo.statusBarHeight = systemInfo.screenHeight - systemInfo.windowHeight - 20;
+      systemInfo.statusBarHeight =
+        systemInfo.screenHeight - systemInfo.windowHeight - 20;
     }
     rect = {
       // 获取不到胶囊信息就自定义重置一个
@@ -89,12 +92,12 @@ export function debounceFn(func: Function, delay = 100) {
       func(...args);
     }, delay);
   };
-};
+}
 
 /**
  * 节流throttle
- * @param func 
- * @param delay 
+ * @param func
+ * @param delay
  */
 export function throttle(func: Function, delay = 100) {
   let canRun = true;
@@ -107,13 +110,14 @@ export function throttle(func: Function, delay = 100) {
       canRun = true;
     }, delay);
   };
-};
+}
 
 export function params2json(params = '', slice = '&') {
   const result = {};
-  params.split(slice).forEach((item) => {
+  params.split(slice).forEach(item => {
     let arr = item.split('=');
-    const key = arr[0] || '', value = arr[1] || '';
+    const key = arr[0] || '',
+      value = arr[1] || '';
     if (item && key) {
       result[key] = value;
     }
@@ -122,14 +126,16 @@ export function params2json(params = '', slice = '&') {
 }
 
 export function json2params(json = {}, slice = '&') {
-  return Object.keys(json).reduce((acc, item) => {
-    return acc + '' + item + '=' + json[item] + slice;
-  }, '').slice(0, -1);
+  return Object.keys(json)
+    .reduce((acc, item) => {
+      return acc + '' + item + '=' + json[item] + slice;
+    }, '')
+    .slice(0, -1);
 }
 
 // 判断数据是否为空，多用于数组和对象的判断
 export function isNotEmpty(value: unknown) {
-  switch (typeof (value)) {
+  switch (typeof value) {
     case 'undefined': {
       return false;
     }
@@ -155,10 +161,10 @@ export function isNotEmpty(value: unknown) {
 }
 
 /**
-* 过滤对象中的空属性，使用方法类似于Object.assign
-* @param args
-* @returns {{}}
-*/
+ * 过滤对象中的空属性，使用方法类似于Object.assign
+ * @param args
+ * @returns {{}}
+ */
 export function assignNoEmpty(...args: {}[]): {} {
   /* @ts-ignore */
   const object = Object.assign(...args);
@@ -182,10 +188,10 @@ export function query2search(query = {}) {
 }
 
 /**
-* 补充path前的斜杠
-* @param path
-* @returns {string}
-*/
+ * 补充path前的斜杠
+ * @param path
+ * @returns {string}
+ */
 export function padSlashFn(path = ''): string {
   return `/${path.replace(/^\//, '')}`;
 }
@@ -193,9 +199,13 @@ export function padSlashFn(path = ''): string {
 /** 拼接查询参数 */
 export function padQuery(url = '', params = {}, padSlash = true) {
   const [pathname, queryStr] = url.split('?');
-  let tempQuery = assignNoEmpty(Object.assign({}, params2json(queryStr), assignNoEmpty(params)));
+  let tempQuery = assignNoEmpty(
+    Object.assign({}, params2json(queryStr), assignNoEmpty(params))
+  );
   let searchQuery = query2search(tempQuery);
-  return padSlash ? `${padSlashFn(pathname)}${searchQuery}` : `${pathname}${searchQuery}`;
+  return padSlash
+    ? `${padSlashFn(pathname)}${searchQuery}`
+    : `${pathname}${searchQuery}`;
 }
 
 /**
@@ -203,7 +213,11 @@ export function padQuery(url = '', params = {}, padSlash = true) {
  * @param {String} url 源链接 http:// | https:// | / 开头
  */
 export function decodeUrl(url: string = '') {
-  if (url && ((url.indexOf('%3A%2F%2F') > -1 && url.indexOf('%3A%2F%2F') < 6) || url.startsWith('%2F'))) {
+  if (
+    url &&
+    ((url.indexOf('%3A%2F%2F') > -1 && url.indexOf('%3A%2F%2F') < 6) ||
+      url.startsWith('%2F'))
+  ) {
     return decodeURIComponent(url);
   }
   return url;
@@ -213,9 +227,13 @@ export function decodeUrl(url: string = '') {
 export function padQuerys(url = '', params = {}, padSlash = true) {
   const newUrl = decodeUrl(url);
   const [pathname, queryStr] = newUrl.split('?');
-  let tempQuery = assignNoEmpty(Object.assign({}, params2json(queryStr), assignNoEmpty(params)));
+  let tempQuery = assignNoEmpty(
+    Object.assign({}, params2json(queryStr), assignNoEmpty(params))
+  );
   let searchQuery = query2search(tempQuery);
-  return padSlash ? `${padSlashFn(pathname)}${searchQuery}` : `${pathname}${searchQuery}`;
+  return padSlash
+    ? `${padSlashFn(pathname)}${searchQuery}`
+    : `${pathname}${searchQuery}`;
 }
 
 export function iosNotSupportToast(complete: any) {
@@ -238,7 +256,7 @@ export function getVersionInfo() {
   // 小程序申诉中
   let isAppeal = !(Number(showEmergency) === 0);
   // 申诉审核隐藏违规手机号授权
-  let hiddenPhone = (Number(iosUseBackUp) !== 1);
+  let hiddenPhone = Number(iosUseBackUp) !== 1;
   return Object.assign({}, versionInfo, {
     /** ios，且开启了“客服打开流程” */
     service2Customer: sysInfo.isIOS && isAppeal,
@@ -250,10 +268,50 @@ export function getVersionInfo() {
 
 /** 生成16位随机数 */
 export const randomStr = (length = 16) => {
-  const RAND_ARR = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-  return new Array(length).fill(1).map(() => {
-    return RAND_ARR[Math.floor(Math.random() * (RAND_ARR.length - 1))];
-  }).join('');
+  const RAND_ARR = [
+    'a',
+    'b',
+    'c',
+    'd',
+    'e',
+    'f',
+    'g',
+    'h',
+    'i',
+    'j',
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    'k',
+    'l',
+    'm',
+    'n',
+    'o',
+    'p',
+    'q',
+    'r',
+    's',
+    't',
+    'u',
+    'v',
+    'w',
+    'x',
+    'y',
+    'z'
+  ];
+  return new Array(length)
+    .fill(1)
+    .map(() => {
+      return RAND_ARR[Math.floor(Math.random() * (RAND_ARR.length - 1))];
+    })
+    .join('');
 };
 
 export function getWeekTime(date: number | string | Date) {
@@ -262,7 +320,9 @@ export function getWeekTime(date: number | string | Date) {
   let currenDay = new_Date.getDay();
   let dates: string[] = [];
   for (let i = 0; i < 7; i++) {
-    let das = new Date(timesStamp + 24 * 60 * 60 * 1000 * (i - (currenDay + 6) % 7)).toLocaleDateString();
+    let das = new Date(
+      timesStamp + 24 * 60 * 60 * 1000 * (i - ((currenDay + 6) % 7))
+    ).toLocaleDateString();
     das = das.replace(/\//g, '-');
     dates.push(das);
   }
@@ -274,12 +334,12 @@ export const timeFormat = (time = 0) => {
   let hours: number, minutes: string | number, seconds: string | number;
   let intTime = Math.floor(time);
   hours = Math.floor(intTime / 3600);
-  minutes = Math.floor(intTime / 60 % 60);
+  minutes = Math.floor((intTime / 60) % 60);
   seconds = intTime % 60;
   return {
     hours: hours,
-    minutes: (minutes > 9) ? minutes : '0' + minutes,
-    seconds: (seconds > 9) ? seconds : '0' + seconds
+    minutes: minutes > 9 ? minutes : '0' + minutes,
+    seconds: seconds > 9 ? seconds : '0' + seconds
   };
 };
 
@@ -290,7 +350,11 @@ export const computedTopHeight = (num: number) => {
 };
 
 // 定义全局对象属性
-export function defineAppProperty(key: PropertyKey, value: any, writable = false) {
+export function defineAppProperty(
+  key: PropertyKey,
+  value: any,
+  writable = false
+) {
   if (key in Taro.getApp() && !writable) return;
   return Object.defineProperty(Taro.getApp(), key, {
     writable,
@@ -315,19 +379,21 @@ export function isObject(temp: any) {
  * @param  {...any} args
  */
 export function classNames(...args: any[]) {
-  const classnames = args.filter((name) => !!name);
-  return classnames.map(name => {
-    if (isObject(name)) {
-      const temps: string[] = [];
-      Object.keys(name).forEach(v => {
-        if (name[v]) {
-          temps.push(v);
-        }
-      });
-      name = temps.join(' ');
-    }
-    return name;
-  }).join(' ');
+  const classnames = args.filter(name => !!name);
+  return classnames
+    .map(name => {
+      if (isObject(name)) {
+        const temps: string[] = [];
+        Object.keys(name).forEach(v => {
+          if (name[v]) {
+            temps.push(v);
+          }
+        });
+        name = temps.join(' ');
+      }
+      return name;
+    })
+    .join(' ');
 }
 
 /**
@@ -339,18 +405,18 @@ export function classNames(...args: any[]) {
  */
 export function deepClone<T>(source: T): T {
   if (!source && typeof source !== 'object') {
-    throw new Error('error arguments deepClone')
+    throw new Error('error arguments deepClone');
   }
-  const targetObj = (source!.constructor === Array ? [] : {}) as T
+  const targetObj = (source!.constructor === Array ? [] : {}) as T;
 
   Object.keys(source!).forEach(keys => {
-    type K = keyof typeof source
+    type K = keyof typeof source;
     if (source![keys as K] && typeof source![keys as K] === 'object') {
-      targetObj[keys as K] = deepClone(source![keys as K])
+      targetObj[keys as K] = deepClone(source![keys as K]);
     } else {
-      targetObj[keys as K] = source![keys as K]
+      targetObj[keys as K] = source![keys as K];
     }
-  })
+  });
 
-  return targetObj
+  return targetObj;
 }

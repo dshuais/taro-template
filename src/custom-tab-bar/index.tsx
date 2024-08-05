@@ -7,10 +7,5 @@
  */
 
 export default function CustomTabBar() {
-  
-  return (
-    <div>
-
-    </div>
-  )
+  return <div></div>;
 }

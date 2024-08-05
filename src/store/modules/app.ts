@@ -1,15 +1,18 @@
-import { create } from "zustand";
-import { createJSONStorage, persist, combine } from "zustand/middleware";
-import { StoreKey } from "@/constants/enums";
-import { sessionStorage } from "../store";
+import { create } from 'zustand';
+import { createJSONStorage, persist, combine } from 'zustand/middleware';
+import { StoreKey } from '@/constants/enums';
+import { sessionStorage } from '../store';
 
 // define the initial state
 const initialState = () => ({
-  token: "",
+  token: ''
 });
 
 type State = ReturnType<typeof initialState>;
-type Update = State | Partial<State> | ((state: State) => State | Partial<State>);
+type Update =
+  | State
+  | Partial<State>
+  | ((state: State) => State | Partial<State>);
 
 /**
  * 当前store版本
@@ -25,13 +28,13 @@ export const useAppStore = create(
     combine(
       initialState(),
 
-      (set) => ({
+      set => ({
         /** 通用update */
         SET_STATE: (data: Update) => set(data),
 
         SET_TOKEN: (token: string) => set({ token }),
 
-        REMOVE_TOKEN: () => set({ token: "" }),
+        REMOVE_TOKEN: () => set({ token: '' }),
 
         RESET: () => set(initialState())
       })
@@ -52,7 +55,7 @@ export const useAppStore = create(
         }
 
         return state;
-      },
+      }
     }
   )
 );
