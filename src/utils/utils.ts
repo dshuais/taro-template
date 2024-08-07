@@ -1,66 +1,4 @@
-import Taro from '@tarojs/taro';
-import { APP_VERSION } from '@/constants/common';
-
-/** 获取系统信息 */
-export function getSystemInfo() {
-  const systemInfo = Taro.getSystemInfoSync();
-  // 导航栏高度
-  let rect: any = null; //胶囊按钮位置信息
-  try {
-    rect = Taro.getMenuButtonBoundingClientRect
-      ? Taro.getMenuButtonBoundingClientRect()
-      : null;
-    if(rect === null) {
-      throw 'getMenuButtonBoundingClientRect error';
-    }
-    //取值为0的情况
-    if(!rect.width) {
-      throw 'getMenuButtonBoundingClientRect error';
-    }
-  } catch(error) {
-    let gap = 0; // 胶囊按钮上下间距 使导航内容居中
-    let width = 96; // 胶囊的宽度，android大部分96，ios为88
-    if(systemInfo.platform === 'android') {
-      gap = 8;
-      width = 96;
-    } else if(systemInfo.platform === 'devtools') {
-      if(`${systemInfo.system}`.toLowerCase().includes('ios')) {
-        gap = 5.5; // 开发工具中ios手机
-      } else {
-        gap = 7.5; // 开发工具中android和其他手机
-      }
-    } else {
-      gap = 4;
-      width = 88;
-    }
-    if(!systemInfo.statusBarHeight) {
-      // 开启wifi的情况下修复statusBarHeight值获取不到
-      systemInfo.statusBarHeight =
-        systemInfo.screenHeight - systemInfo.windowHeight - 20;
-    }
-    rect = {
-      // 获取不到胶囊信息就自定义重置一个
-      bottom: systemInfo.statusBarHeight + gap + 32,
-      height: 32,
-      left: systemInfo.windowWidth - width - 10,
-      right: systemInfo.windowWidth - 10,
-      top: systemInfo.statusBarHeight + gap,
-      width: width
-    };
-  }
-  let gap = rect.top - systemInfo.statusBarHeight!; // 动态计算每台手机状态栏到胶囊按钮间距
-  const navBarHeight = 2 * gap + rect.height;
-  const safeTopDistance = rect.bottom;
-  const systemText = `${systemInfo.system}`.toLowerCase();
-  return {
-    ...systemInfo,
-    navBarHeight,
-    safeTopDistance,
-    headerHeight: systemInfo.statusBarHeight + navBarHeight,
-    isIOS: systemText.includes('ios') || systemText.includes('mac'),
-    rect
-  };
-}
+import { getSystemInfo } from './tools';
 
 /** rpx 转换为 px */
 export function rpx2px(rpx: number) {
@@ -79,6 +17,7 @@ export function px2rpx(px: number) {
  * @param func
  * @param delay
  */
+// eslint-disable-next-line @typescript-eslint/ban-types
 export function debounceFn(func: Function, delay = 100) {
   let timer: any;
   return (...args: any) => {
@@ -99,6 +38,7 @@ export function debounceFn(func: Function, delay = 100) {
  * @param func
  * @param delay
  */
+// eslint-disable-next-line @typescript-eslint/ban-types
 export function throttle(func: Function, delay = 100) {
   let canRun = true;
   return (...args: any) => {
@@ -115,7 +55,7 @@ export function throttle(func: Function, delay = 100) {
 export function params2json(params = '', slice = '&') {
   const result = {};
   params.split(slice).forEach(item => {
-    let arr = item.split('=');
+    const arr = item.split('=');
     const key = arr[0] || '',
       value = arr[1] || '';
     if(item && key) {
@@ -165,8 +105,7 @@ export function isNotEmpty(value: unknown) {
  * @param args
  * @returns {{}}
  */
-export function assignNoEmpty(...args: {}[]): {} {
-  /* @ts-ignore */
+export function assignNoEmpty(...args: object[]): object {
   const object = Object.assign(...args);
   return Object.keys(object).reduce((obj, key) => {
     const value = object[key];
@@ -199,8 +138,8 @@ export function padSlashFn(path = ''): string {
 /** 拼接查询参数 */
 export function padQuery(url = '', params = {}, padSlash = true) {
   const [pathname, queryStr] = url.split('?');
-  let tempQuery = assignNoEmpty(Object.assign({}, params2json(queryStr), assignNoEmpty(params)));
-  let searchQuery = query2search(tempQuery);
+  const tempQuery = assignNoEmpty(Object.assign({}, params2json(queryStr), assignNoEmpty(params)));
+  const searchQuery = query2search(tempQuery);
   return padSlash
     ? `${padSlashFn(pathname)}${searchQuery}`
     : `${pathname}${searchQuery}`;
@@ -225,41 +164,11 @@ export function decodeUrl(url: string = '') {
 export function padQuerys(url = '', params = {}, padSlash = true) {
   const newUrl = decodeUrl(url);
   const [pathname, queryStr] = newUrl.split('?');
-  let tempQuery = assignNoEmpty(Object.assign({}, params2json(queryStr), assignNoEmpty(params)));
-  let searchQuery = query2search(tempQuery);
+  const tempQuery = assignNoEmpty(Object.assign({}, params2json(queryStr), assignNoEmpty(params)));
+  const searchQuery = query2search(tempQuery);
   return padSlash
     ? `${padSlashFn(pathname)}${searchQuery}`
     : `${pathname}${searchQuery}`;
-}
-
-export function iosNotSupportToast(complete: any) {
-  const { descr = '', service2Customer } = getVersionInfo();
-  if(service2Customer) {
-    const text = descr.trim() || '因政策规定，iOS功能暂不可用';
-    Taro.showToast({
-      title: text,
-      icon: 'none',
-      complete: complete
-    });
-  }
-}
-
-export function getVersionInfo() {
-  const sysInfo = getSystemInfo();
-  let versionInfo = Taro.getStorageSync(APP_VERSION) || {};
-  const { emergencyStatus, androidEmergency, iosUseBackUp } = versionInfo;
-  let showEmergency = sysInfo.isIOS ? emergencyStatus : androidEmergency;
-  // 小程序申诉中
-  let isAppeal = !(Number(showEmergency) === 0);
-  // 申诉审核隐藏违规手机号授权
-  let hiddenPhone = Number(iosUseBackUp) !== 1;
-  return Object.assign({}, versionInfo, {
-    /** ios，且开启了“客服打开流程” */
-    service2Customer: sysInfo.isIOS && isAppeal,
-    isAppeal,
-    appealText: isAppeal ? '因政策规定，IOS功能暂不可用' : '',
-    hiddenPhone
-  });
 }
 
 /** 生成16位随机数 */
@@ -311,10 +220,10 @@ export const randomStr = (length = 16) => {
 };
 
 export function getWeekTime(date: number | string | Date) {
-  let new_Date = new Date(date || new Date()); //获取本周一周日期
-  let timesStamp = new_Date.getTime();
-  let currenDay = new_Date.getDay();
-  let dates: string[] = [];
+  const new_Date = new Date(date || new Date()); //获取本周一周日期
+  const timesStamp = new_Date.getTime();
+  const currenDay = new_Date.getDay();
+  const dates: string[] = [];
   for(let i = 0; i < 7; i++) {
     let das = new Date(timesStamp + 24 * 60 * 60 * 1000 * (i - ((currenDay + 6) % 7))).toLocaleDateString();
     das = das.replace(/\//g, '-');
@@ -325,36 +234,16 @@ export function getWeekTime(date: number | string | Date) {
 
 // 格式化资源时间
 export const timeFormat = (time = 0) => {
-  let hours: number, minutes: string | number, seconds: string | number;
-  let intTime = Math.floor(time);
-  hours = Math.floor(intTime / 3600);
-  minutes = Math.floor((intTime / 60) % 60);
-  seconds = intTime % 60;
+  const intTime = Math.floor(time);
+  const hours = Math.floor(intTime / 3600);
+  const minutes = Math.floor((intTime / 60) % 60);
+  const seconds = intTime % 60;
   return {
     hours: hours,
     minutes: minutes > 9 ? minutes : '0' + minutes,
     seconds: seconds > 9 ? seconds : '0' + seconds
   };
 };
-
-// 距离顶部距离
-export const computedTopHeight = (num: number) => {
-  const { statusBarHeight, navBarHeight } = getSystemInfo();
-  return statusBarHeight + navBarHeight + rpx2px(num);
-};
-
-// 定义全局对象属性
-export function defineAppProperty(
-  key: PropertyKey,
-  value: any,
-  writable = false
-) {
-  if(key in Taro.getApp() && !writable) return;
-  return Object.defineProperty(Taro.getApp(), key, {
-    writable,
-    value
-  });
-}
 
 export function getEllipsis(str: string, len = 6) {
   if(typeof str === 'string' && str.length > len) {
@@ -366,28 +255,6 @@ export function getEllipsis(str: string, len = 6) {
 
 export function isObject(temp: any) {
   return Object.prototype.toString.call(temp) === '[object Object]';
-}
-
-/**
- * 拼接classname
- * @param  {...any} args
- */
-export function classNames(...args: any[]) {
-  const classnames = args.filter(name => !!name);
-  return classnames
-    .map(name => {
-      if(isObject(name)) {
-        const temps: string[] = [];
-        Object.keys(name).forEach(v => {
-          if(name[v]) {
-            temps.push(v);
-          }
-        });
-        name = temps.join(' ');
-      }
-      return name;
-    })
-    .join(' ');
 }
 
 /**
