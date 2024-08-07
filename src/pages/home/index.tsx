@@ -12,7 +12,7 @@ import { PAGE } from '@/constants/PAGE';
 import { useAppStore } from '@/store';
 
 import { GetTest, GetTest2, GetTest3, GetTest4 } from '@/api/api';
-import { getSystemInfo } from '@/utils/utils';
+import { getSystemInfo } from '@/utils/tools';
 
 import './index.scss';
 

@@ -66,7 +66,7 @@ export const requiredValid = value => {
     if(value.length === 0) {
       return false;
     }
-    for(let item of value) {
+    for(const item of value) {
       if(typeof item !== 'number' && !trim(item)) {
         return false;
       }
@@ -144,7 +144,7 @@ export const required = (values, errors, fieldNames) => {
   } else if(fieldNames instanceof Array) {
     fieldNamesArray = fieldNames;
   }
-  for(let fieldName of fieldNamesArray) {
+  for(const fieldName of fieldNamesArray) {
     if(!values[fieldName]) {
       errors[fieldName] = '必填';
     }
