@@ -512,6 +512,12 @@ module.exports = {
         beforeClosing: 'never'
       }
     ],
-    'react-hooks/exhaustive-deps': 'off' // 不检查effect的依赖
+    'react-hooks/exhaustive-deps': 'off', // 不检查effect的依赖
+
+    /**
+     * ts 规则
+     */
+    // 关闭对any的警告
+    '@typescript-eslint/no-explicit-any': ['off']
   }
 };
