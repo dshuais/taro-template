@@ -4,10 +4,10 @@ import Taro from '@tarojs/taro';
 export function getCode() {
   return new Promise((resolve, reject) => {
     Taro.login({
-      success: function (res) {
+      success: function(res) {
         resolve(res.code);
       },
-      fail: function (res) {
+      fail: function(res) {
         reject(res);
       }
     });
@@ -37,7 +37,7 @@ export function authUserProfile(success: () => void, error: () => void) {
     desc: '用于精准提供本书服务' // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
   })
     .then(res => {
-      if (res.userInfo) {
+      if(res.userInfo) {
         const {
           avatarUrl,
           city,
@@ -95,7 +95,7 @@ export function authUserProfile(success: () => void, error: () => void) {
 
 /** 保存临时图片到本地 */
 export function saveImagePhotosAlbum(tempFilePath: string) {
-  if (!tempFilePath) return;
+  if(!tempFilePath) return;
   Taro.saveImageToPhotosAlbum({
     filePath: tempFilePath,
     success: () => {
@@ -111,13 +111,13 @@ export function saveImagePhotosAlbum(tempFilePath: string) {
         content: '请先授权再保存此图片',
         showCancel: false,
         success(data) {
-          if (data.confirm) {
+          if(data.confirm) {
             Taro.openSetting({
               success(settingdata) {
-                if (settingdata.authSetting['scope.writePhotosAlbum']) {
+                if(settingdata.authSetting['scope.writePhotosAlbum']) {
                   Taro.saveImageToPhotosAlbum({
                     filePath: tempFilePath,
-                    success: function () {
+                    success: function() {
                       Taro.showToast({
                         title: '保存成功',
                         icon: 'none',
@@ -143,7 +143,7 @@ export function saveImagePhotosAlbum(tempFilePath: string) {
 
 /** 保存网络图片到本地 */
 export function saveImageToPhotosAlbum(url: string) {
-  if (!url) return;
+  if(!url) return;
   Taro.downloadFile({
     url,
     success: res => {

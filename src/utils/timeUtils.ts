@@ -14,10 +14,10 @@ import dayjs from './dayjs';
  * @returns fmt
  */
 export function timeFormat(date: any, fmt: string = 'yyyy-MM-dd hh:mm:ss') {
-  if (typeof date === 'string') {
+  if(typeof date === 'string') {
     date = date.replace(/-/g, '/');
   }
-  if (!isDate(date)) {
+  if(!isDate(date)) {
     date = new Date(date);
   }
   let o = {
@@ -29,17 +29,17 @@ export function timeFormat(date: any, fmt: string = 'yyyy-MM-dd hh:mm:ss') {
     'q+': Math.floor((date.getMonth() + 3) / 3), // 季度
     'S+': date.getMilliseconds() // 毫秒
   };
-  if (/(y+)/.test(fmt)) {
+  if(/(y+)/.test(fmt)) {
     fmt = fmt.replace(
       RegExp.$1,
       (date.getFullYear() + '').substr(4 - RegExp.$1.length)
     );
   }
-  for (var k in o) {
-    if (new RegExp('(' + k + ')').test(fmt)) {
+  for(let k in o) {
+    if(new RegExp('(' + k + ')').test(fmt)) {
       fmt = fmt.replace(
         RegExp.$1,
-        RegExp.$1.length == 1 ? o[k] : ('00' + o[k]).substr(('' + o[k]).length)
+        RegExp.$1.length === 1 ? o[k] : ('00' + o[k]).substr(('' + o[k]).length)
       );
     }
   }
@@ -57,12 +57,12 @@ export function isDate(obj: unknown) {
  * @returns string
  */
 export function GetDateStr(AddDayCount: number) {
-  var dd = new Date();
+  let dd = new Date();
   dd.setDate(dd.getDate() + AddDayCount);
-  var y = dd.getFullYear();
-  var m =
+  let y = dd.getFullYear();
+  let m =
     dd.getMonth() + 1 < 10 ? '0' + (dd.getMonth() + 1) : dd.getMonth() + 1;
-  var d = dd.getDate() < 10 ? '0' + dd.getDate() : dd.getDate();
+  let d = dd.getDate() < 10 ? '0' + dd.getDate() : dd.getDate();
   return y + '年' + m + '月' + d + '日';
 }
 

@@ -5,63 +5,63 @@
  * @LastEditTime: 2024-08-04 11:49:02
  * @description: axios
  */
-import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
-import qs from 'qs'
-import { useAppStore } from '@/store'
+import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import qs from 'qs';
+import { useAppStore } from '@/store';
 // import { cancelRequest } from './requestCancel'
-import ErrorCodeHandle from './requestCode'
+import ErrorCodeHandle from './requestCode';
 
 /** 不需要处理异常白名单 */
-const whiteList: string[] = ['/qiniu/upload/uptoken']
+const whiteList: string[] = ['/qiniu/upload/uptoken'];
 
 // axios基础配置
 const service = axios.create({
   timeout: 20000,
   baseURL: process.env.TARO_APP_BASE_URL
-})
+});
 
 // 请求拦截
 service.interceptors.request.use(
   (config: InternalAxiosRequestConfig<any>) => {
     // 添加token
-    const token = useAppStore.getState().token
+    const token = useAppStore.getState().token;
 
-    if (token) {
-      config.headers['token'] = token
+    if(token) {
+      config.headers['token'] = token;
     }
 
     // cancelRequest.addPending(config) // 添加当前请求至请求列表
 
     // console.log('请求拦截 config:>> ', config)
-    return config
+    return config;
   },
   (err: AxiosError) => {
-    return Promise.reject(err)
+    return Promise.reject(err);
   }
-)
+);
 
 // 响应拦截
 service.interceptors.response.use(
   (response: AxiosResponse<any, any>) => {
-    const url = response.config.url as string
+    const url = response.config.url as string;
 
     // cancelRequest.removePending(response.config) // 删除重复请求
 
     /**
      * 处理错误响应
      */
-    if (whiteList.some(e => e.match(url))) {
-      console.log('接口通过白名单，不需要异常处理url:>> ', url)
+    if(whiteList.some(e => e.match(url))) {
+      console.log('接口通过白名单，不需要异常处理url:>> ', url);
     } else {
-      ErrorCodeHandle(response)
+      ErrorCodeHandle(response);
     }
 
     // console.log('响应拦截 response:>> ', response)
-    if (response.data.code === 200) {
-      return response
+    if(response.data.code === 200) {
+      return response;
     } else {
-      console.error("响应异常:>> ", response);
-      return Promise.reject(response)
+      console.error('响应异常:>> ', response);
+      return Promise.reject(response);
     }
   },
   (err: AxiosError) => {
@@ -69,20 +69,19 @@ service.interceptors.response.use(
      * 将取消请求的错误捕获
      * 根据需要设置 因为需要对每个请求单独处理catch 所以隐藏取消请求的错误返回
      */
-    console.error("响应异常:>> ", err);
+    console.error('响应异常:>> ', err);
 
-    if (err.code === 'ERR_CANCELED') {
-      console.log('请求取消url:>> ', err.config?.url)
-    } else if (err.code === 'ECONNABORTED' && err.message.includes('timeout')) {
+    if(err.code === 'ERR_CANCELED') {
+      console.log('请求取消url:>> ', err.config?.url);
+    } else if(err.code === 'ECONNABORTED' && err.message.includes('timeout')) {
       // message.error('请求超时,请检查服务器状态')
-      return Promise.reject(err)
+      return Promise.reject(err);
     } else {
       // message.error(err.message)
-      return Promise.reject(err)
+      return Promise.reject(err);
     }
   }
-)
-
+);
 
 /**
  * 基础的请求
@@ -98,16 +97,16 @@ export function post<T = any>(url: string, params?: unknown): Promise<Res.Respon
       })
       .then(
         (response: AxiosResponse<Res.ResponseRes<T>>) => {
-          response && resolve(response.data)
+          response && resolve(response.data);
         },
         (err: AxiosError) => {
-          reject(err)
+          reject(err);
         }
       )
       .catch((err: AxiosError) => {
-        reject(err)
-      })
-  })
+        reject(err);
+      });
+  });
 }
 
 /** POST JSON格式 */
@@ -117,16 +116,16 @@ export function postJSON<T = any>(url: string, params?: unknown): Promise<Res.Re
       .post(url, params)
       .then(
         (response: AxiosResponse<Res.ResponseRes<T>>) => {
-          response && resolve(response.data)
+          response && resolve(response.data);
         },
         (err: AxiosError) => {
-          reject(err)
+          reject(err);
         }
       )
       .catch((error: AxiosError) => {
-        reject(error)
-      })
-  })
+        reject(error);
+      });
+  });
 }
 
 /** GET请求 */
@@ -136,16 +135,16 @@ export function get<T = any>(url: string, params?: unknown): Promise<Res.Respons
       .get(url, { params })
       .then(
         (response: AxiosResponse<Res.ResponseRes<T>>) => {
-          response && resolve(response.data)
+          response && resolve(response.data);
         },
         (err: AxiosError) => {
-          reject(err)
+          reject(err);
         }
       )
       .catch((error: AxiosError) => {
-        reject(error)
-      })
-  })
+        reject(error);
+      });
+  });
 }
 
 /**
@@ -157,16 +156,16 @@ export function put<T = any>(url: string, params?: unknown): Promise<Res.Respons
       .put(url, params)
       .then(
         (response: AxiosResponse<Res.ResponseRes<T>>) => {
-          response && resolve(response.data)
+          response && resolve(response.data);
         },
         (err: AxiosError) => {
-          reject(err)
+          reject(err);
         }
       )
       .catch((error: AxiosError) => {
-        reject(error)
-      })
-  })
+        reject(error);
+      });
+  });
 }
 
 /**
@@ -178,14 +177,14 @@ export function del<T = any>(url: string, params?: unknown): Promise<Res.Respons
       .delete(url, { params })
       .then(
         (response: AxiosResponse<Res.ResponseRes<T>>) => {
-          response && resolve(response.data)
+          response && resolve(response.data);
         },
         (err: AxiosError) => {
-          reject(err)
+          reject(err);
         }
       )
       .catch((error: AxiosError) => {
-        reject(error)
-      })
-  })
+        reject(error);
+      });
+  });
 }

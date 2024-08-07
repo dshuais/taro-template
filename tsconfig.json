@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "module": "commonjs",
+    "module": "CommonJS",
     "removeComments": false,
     "preserveConstEnums": true,
     "moduleResolution": "node",
@@ -17,24 +17,14 @@
     "jsx": "react-jsx",
     "allowJs": true,
     "resolveJsonModule": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "typeRoots": ["node_modules/@types"],
     "paths": {
       // TS5090 leading './'
-      "@/*": [
-        "./src/*"
-      ],
-      "~/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"],
+      "~/*": ["./src/*"]
     }
   },
-  "include": [
-    "./src",
-    "./types",
-    "./config"
-  ],
+  "include": ["./src", "./types", "./config", "./types/*"],
   "exclude": ["node_modules", "dist"],
   "compileOnSave": false
 }

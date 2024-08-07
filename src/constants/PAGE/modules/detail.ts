@@ -14,10 +14,10 @@ const name = '详情页';
  */
 const page = {
   /** info页 */
- INFO: '/info/index',
+  INFO: '/info/index',
 
   /** webview */
- WEBVIEW: '/webview/index'
+  WEBVIEW: '/webview/index'
 };
 
 export default { root, name, page };

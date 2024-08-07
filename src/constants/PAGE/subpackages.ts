@@ -1,5 +1,5 @@
-import { Plugins, SubPackage } from "@tarojs/taro";
-import { packages } from "./modules";
+import { Plugins, SubPackage } from '@tarojs/taro';
+import { packages } from './modules';
 
 type PACKAGE = (typeof packages)[keyof typeof packages] & {
   appType?: string;
@@ -24,6 +24,6 @@ Object.keys(packages).forEach((key) => {
     name: packageRow.name,
     pages,
     plugins: packageRow.plugins,
-    independent: packageRow.independent || false, // 是否是独立分包
+    independent: packageRow.independent || false // 是否是独立分包
   });
 });

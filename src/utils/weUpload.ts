@@ -34,7 +34,7 @@ export function UploadMedia({ maxDuration, mediaType, sourceType }) {
       camera: 'back',
       success: res => {
         const files = res.tempFiles;
-        if (files.some(file => file.duration > MAX_DURATION)) {
+        if(files.some(file => file.duration > MAX_DURATION)) {
           return Taro.showToast({
             title: `视频时长不能超过${MAX_DURATION}秒`,
             icon: 'none',
@@ -89,7 +89,7 @@ export function ChooseImage({
         const filePaths = res.tempFilePaths || [];
 
         // 不上传则直接返回 tempFilePath
-        if (!_upload) {
+        if(!_upload) {
           return resolve(filePaths);
         }
 

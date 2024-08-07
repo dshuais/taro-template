@@ -16,8 +16,8 @@ module.exports = {
     preflight: false
   },
   theme: {
-    extend: {},
+    extend: {}
   },
-  plugins: [],
-}
+  plugins: []
+};
 

@@ -6,7 +6,7 @@
  * @description: 枚举文件
  */
 
-export const APP_KEY = 'taro-template'
+export const APP_KEY = 'taro-template';
 
 /**
  * store key

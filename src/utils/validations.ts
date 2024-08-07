@@ -19,7 +19,7 @@ export const regs = {
 
 function validation(reg) {
   return value => {
-    if (isString(value)) {
+    if(isString(value)) {
       const regExp = new RegExp(regs[reg]);
       return regExp.test(value);
     }
@@ -58,16 +58,16 @@ export const isNumber = value => {
 
 //验证必填（可验证数组）
 export const requiredValid = value => {
-  if (typeof value === 'undefined') {
+  if(typeof value === 'undefined') {
     return false;
-  } else if (typeof value === 'string') {
+  } else if(typeof value === 'string') {
     return !!trim(value);
-  } else if (Array.isArray(value)) {
-    if (value.length === 0) {
+  } else if(Array.isArray(value)) {
+    if(value.length === 0) {
       return false;
     }
-    for (let item of value) {
-      if (typeof item !== 'number' && !trim(item)) {
+    for(let item of value) {
+      if(typeof item !== 'number' && !trim(item)) {
         return false;
       }
     }
@@ -87,9 +87,9 @@ export const isNotEmpty = value => {
     }
 
     case 'object': {
-      if (Array.isArray(value)) {
+      if(Array.isArray(value)) {
         return value.length !== 0;
-      } else if (value === null) {
+      } else if(value === null) {
         return false;
       } else {
         return Object.keys(value).length !== 0;
@@ -105,9 +105,9 @@ export const isNotEmpty = value => {
 //验证最大长度
 export const maxLengthValid = (value, maxLength) => {
   let length;
-  if (typeof value === 'number') {
+  if(typeof value === 'number') {
     length = String(value).length;
-  } else if (value instanceof Array || typeof value === 'string') {
+  } else if(value instanceof Array || typeof value === 'string') {
     length = value.length;
   }
   return maxLength > 0 && length <= maxLength;
@@ -116,9 +116,9 @@ export const maxLengthValid = (value, maxLength) => {
 //验证最小长度
 export const minLengthValid = (value, minLength) => {
   let length;
-  if (typeof value === 'number') {
+  if(typeof value === 'number') {
     length = String(value).length;
-  } else if (value instanceof Array || typeof value === 'string') {
+  } else if(value instanceof Array || typeof value === 'string') {
     length = value.length;
   }
   return minLength > 0 && length >= minLength;
@@ -126,11 +126,11 @@ export const minLengthValid = (value, minLength) => {
 
 //验证指定正则
 export const patternValid = (value, pattern) => {
-  if (!pattern) return false;
+  if(!pattern) return false;
 
-  if (typeof pattern === 'string') {
+  if(typeof pattern === 'string') {
     return new RegExp(pattern).test(value);
-  } else if (pattern instanceof RegExp) {
+  } else if(pattern instanceof RegExp) {
     return pattern.test(value);
   } else {
     return false;
@@ -139,13 +139,13 @@ export const patternValid = (value, pattern) => {
 
 export const required = (values, errors, fieldNames) => {
   let fieldNamesArray: string[] = [];
-  if (typeof fieldNames === 'string') {
+  if(typeof fieldNames === 'string') {
     fieldNamesArray = [fieldNames];
-  } else if (fieldNames instanceof Array) {
+  } else if(fieldNames instanceof Array) {
     fieldNamesArray = fieldNames;
   }
-  for (let fieldName of fieldNamesArray) {
-    if (!values[fieldName]) {
+  for(let fieldName of fieldNamesArray) {
+    if(!values[fieldName]) {
       errors[fieldName] = '必填';
     }
   }

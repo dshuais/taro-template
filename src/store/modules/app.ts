@@ -23,39 +23,37 @@ const APP_STORE_VERSION: number = 0.1;
 /**
  * app通用模块store
  */
-export const useAppStore = create(
-  persist(
-    combine(
-      initialState(),
+export const useAppStore = create(persist(
+  combine(
+    initialState(),
 
-      set => ({
-        /** 通用update */
-        SET_STATE: (data: Update) => set(data),
+    set => ({
+      /** 通用update */
+      SET_STATE: (data: Update) => set(data),
 
-        SET_TOKEN: (token: string) => set({ token }),
+      SET_TOKEN: (token: string) => set({ token }),
 
-        REMOVE_TOKEN: () => set({ token: '' }),
+      REMOVE_TOKEN: () => set({ token: '' }),
 
-        RESET: () => set(initialState())
-      })
-    ),
-    {
-      name: StoreKey.APP, // name of the storage (needs to be unique)
+      RESET: () => set(initialState())
+    })
+  ),
+  {
+    name: StoreKey.APP, // name of the storage (needs to be unique)
 
-      storage: createJSONStorage(sessionStorage), // (optional) storage to use for state persistence, defaults to localStorage for web
+    storage: createJSONStorage(sessionStorage), // (optional) storage to use for state persistence, defaults to localStorage for web
 
-      version: APP_STORE_VERSION,
+    version: APP_STORE_VERSION,
 
-      // migration logic
-      migrate: (persistedState, version) => {
-        const state = {};
+    // migration logic
+    migrate: (persistedState, version) => {
+      const state = {};
 
-        if (version != APP_STORE_VERSION) {
-          Object.assign(state, persistedState);
-        }
-
-        return state;
+      if(version !== APP_STORE_VERSION) {
+        Object.assign(state, persistedState);
       }
+
+      return state;
     }
-  )
-);
+  }
+));

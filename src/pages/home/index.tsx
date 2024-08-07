@@ -7,18 +7,16 @@
  */
 import { View, Text, Button } from '@tarojs/components';
 import Taro, { useDidShow, useLoad } from '@tarojs/taro';
-
 import { PAGE } from '@/constants/PAGE';
 import { useAppStore } from '@/store';
+
 import { GetTest, GetTest2, GetTest3, GetTest4 } from '@/api/api';
 import { getSystemInfo } from '@/utils/utils';
 
 import './index.scss';
 
 export default function Home() {
-  const { token, SET_TOKEN, REMOVE_TOKEN, SET_STATE } = useAppStore(
-    state => state
-  );
+  const { token, SET_TOKEN, REMOVE_TOKEN, SET_STATE } = useAppStore((state) => state);
 
   useLoad(() => {
     console.log('Page loaded.');
@@ -29,7 +27,8 @@ export default function Home() {
     console.log(
       '当前环境:>> ',
       process.env.NODE_ENV,
-      process.env.TARO_APP_TITLE
+      process.env.TARO_APP_TITLE,
+      process.env.TARO_APP_RESOURCE_URL
     );
     console.log('getSystemInfo:>> ', getSystemInfo());
   });
@@ -40,18 +39,21 @@ export default function Home() {
 
   function handleTest(ind: number) {
     const params = { user: 'dushuai' };
+    if(ind === 1) {
+      params['pwd'] = '123456';
+    }
     switch (ind) {
       case 0:
         GetTest(params).then(res => console.log('GetTest:>> ', res));
         break;
       case 1:
-        GetTest2(params).then(res => console.log('GetTest:>> ', res));
+        GetTest2(params).then((res) => console.log('GetTest:>> ', res));
         break;
       case 2:
-        GetTest3(params).then(res => console.log('GetTest:>> ', res));
+        GetTest3(params).then((res) => console.log('GetTest:>> ', res));
         break;
       case 3:
-        GetTest4().then(res => console.log('GetTest:>> ', res));
+        GetTest4().then((res) => console.log('GetTest:>> ', res));
         break;
     }
   }
