@@ -5,6 +5,7 @@
  * @LastEditTime: 2024-08-04 15:54:09
  * @description: index
  */
+import { useEffect } from 'react';
 import { View, Text, Button } from '@tarojs/components';
 import Taro, { useDidShow, useLoad } from '@tarojs/taro';
 import { PAGE } from '@/constants/PAGE';
@@ -32,6 +33,10 @@ export default function Home() {
     );
     console.log('getSystemInfo:>> ', getSystemInfo());
   });
+
+  useEffect(() => {
+    console.log('token:>> ', token);
+  }, []);
 
   function handleLogin() {
     Taro.switchTab({ url: PAGE.PERSONAL });
