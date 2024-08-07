@@ -22,9 +22,14 @@
       // TS5090 leading './'
       "@/*": ["./src/*"],
       "~/*": ["./src/*"]
-    }
+    },
+    "types": [
+      // "global.d.ts",
+      // "../types/response.d.ts"
+    ]
   },
-  "include": ["./src", "./types", "./config", "./types/*"],
+  "include": ["./src", "./types", "./config", "./types/response.d.ts"],
   "exclude": ["node_modules", "dist"],
-  "compileOnSave": false
+  "compileOnSave": false,
+  "files": ["./types/response.d.ts"]
 }

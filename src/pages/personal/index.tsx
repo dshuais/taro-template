@@ -5,6 +5,7 @@
  * @LastEditTime: 2024-08-01 20:47:34
  * @description: Personal
  */
+import Test from '@/components/Base/Test';
 import { View } from '@tarojs/components';
 
 export default function Personal() {
@@ -14,6 +15,8 @@ export default function Personal() {
       <div>我是最新的标签</div>
       <p>我是p</p>
       <span>我是span</span>
+
+      <Test title="我是测试" />
     </View>
   );
 }

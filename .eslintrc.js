@@ -25,10 +25,17 @@ module.exports = {
     '@typescript-eslint'
   ],
   root: true,
+  /**
+   * 因为配置了eslint no-undef验证，所以手动配置全局变量，
+   * 也可关闭no-undef: 'off'，关闭后会自动使用ts校验
+   * 我为了使用eslint的验证，所以选择了手动配置全局变量
+   */
   globals: {
     defineAppConfig: true,
-    definePageConfig: true
-    // Res: true
+    definePageConfig: true,
+    Res: true,
+    Req: true,
+    NodeJS: true
   },
   rules: {
     // 屏蔽import/no-commonjs提示

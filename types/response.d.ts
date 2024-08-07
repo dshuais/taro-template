@@ -11,7 +11,7 @@
  */
 declare namespace Res {
   /** response */
-  interface ResponseRes<T = unknown> {
+  interface Response<T = unknown> {
     code: number,
     data: T,
     msg: string

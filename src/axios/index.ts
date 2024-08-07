@@ -22,7 +22,7 @@ const service = axios.create({
 
 // 请求拦截
 service.interceptors.request.use(
-  (config: InternalAxiosRequestConfig<any>) => {
+  (config: InternalAxiosRequestConfig<unknown>) => {
     // 添加token
     const token = useAppStore.getState().token;
 
@@ -42,7 +42,7 @@ service.interceptors.request.use(
 
 // 响应拦截
 service.interceptors.response.use(
-  (response: AxiosResponse<any, any>) => {
+  (response: AxiosResponse<Res.Response<unknown>, unknown>) => {
     const url = response.config.url as string;
 
     // cancelRequest.removePending(response.config) // 删除重复请求
@@ -87,8 +87,8 @@ service.interceptors.response.use(
  * 基础的请求
 */
 /** POST表单格式 */
-export function post<T = any>(url: string, params?: unknown): Promise<Res.ResponseRes<T>> {
-  return new Promise<Res.ResponseRes<T>>((resolve, reject) => {
+export function post<T = unknown>(url: string, params?: unknown): Promise<Res.Response<T>> {
+  return new Promise<Res.Response<T>>((resolve, reject) => {
     service
       .post(url, qs.stringify(params), {
         headers: {
@@ -96,7 +96,7 @@ export function post<T = any>(url: string, params?: unknown): Promise<Res.Respon
         }
       })
       .then(
-        (response: AxiosResponse<Res.ResponseRes<T>>) => {
+        (response: AxiosResponse<Res.Response<T>>) => {
           response && resolve(response.data);
         },
         (err: AxiosError) => {
@@ -110,12 +110,12 @@ export function post<T = any>(url: string, params?: unknown): Promise<Res.Respon
 }
 
 /** POST JSON格式 */
-export function postJSON<T = any>(url: string, params?: unknown): Promise<Res.ResponseRes<T>> {
-  return new Promise<Res.ResponseRes<T>>((resolve, reject) => {
+export function postJSON<T = unknown>(url: string, params?: unknown): Promise<Res.Response<T>> {
+  return new Promise<Res.Response<T>>((resolve, reject) => {
     service
       .post(url, params)
       .then(
-        (response: AxiosResponse<Res.ResponseRes<T>>) => {
+        (response: AxiosResponse<Res.Response<T>>) => {
           response && resolve(response.data);
         },
         (err: AxiosError) => {
@@ -129,12 +129,12 @@ export function postJSON<T = any>(url: string, params?: unknown): Promise<Res.Re
 }
 
 /** GET请求 */
-export function get<T = any>(url: string, params?: unknown): Promise<Res.ResponseRes<T>> {
-  return new Promise<Res.ResponseRes<T>>((resolve, reject) => {
+export function get<T = unknown>(url: string, params?: unknown): Promise<Res.Response<T>> {
+  return new Promise<Res.Response<T>>((resolve, reject) => {
     service
       .get(url, { params })
       .then(
-        (response: AxiosResponse<Res.ResponseRes<T>>) => {
+        (response: AxiosResponse<Res.Response<T>>) => {
           response && resolve(response.data);
         },
         (err: AxiosError) => {
@@ -150,12 +150,12 @@ export function get<T = any>(url: string, params?: unknown): Promise<Res.Respons
 /**
  * PUT请求
  */
-export function put<T = any>(url: string, params?: unknown): Promise<Res.ResponseRes<T>> {
-  return new Promise<Res.ResponseRes<T>>((resolve, reject) => {
+export function put<T = unknown>(url: string, params?: unknown): Promise<Res.Response<T>> {
+  return new Promise<Res.Response<T>>((resolve, reject) => {
     service
       .put(url, params)
       .then(
-        (response: AxiosResponse<Res.ResponseRes<T>>) => {
+        (response: AxiosResponse<Res.Response<T>>) => {
           response && resolve(response.data);
         },
         (err: AxiosError) => {
@@ -171,12 +171,12 @@ export function put<T = any>(url: string, params?: unknown): Promise<Res.Respons
 /**
  * DELETE请求
  */
-export function del<T = any>(url: string, params?: unknown): Promise<Res.ResponseRes<T>> {
-  return new Promise<Res.ResponseRes<T>>((resolve, reject) => {
+export function del<T = unknown>(url: string, params?: unknown): Promise<Res.Response<T>> {
+  return new Promise<Res.Response<T>>((resolve, reject) => {
     service
       .delete(url, { params })
       .then(
-        (response: AxiosResponse<Res.ResponseRes<T>>) => {
+        (response: AxiosResponse<Res.Response<T>>) => {
           response && resolve(response.data);
         },
         (err: AxiosError) => {
