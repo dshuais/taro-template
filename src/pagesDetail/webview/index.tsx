@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-04-24 16:07:10
  * @description: Webview
  */
-import { View } from "@tarojs/components";
+import { View } from '@tarojs/components';
 
 export default function Webview() {
   return (
@@ -14,5 +14,5 @@ export default function Webview() {
         Webview
       </View>
     </View>
-  )
+  );
 }

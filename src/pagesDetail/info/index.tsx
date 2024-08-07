@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-04-24 16:07:18
  * @description: Info
  */
-import { View } from "@tarojs/components";
+import { View } from '@tarojs/components';
 
 export default function Info() {
   return (
@@ -14,5 +14,5 @@ export default function Info() {
         Info
       </View>
     </View>
-  )
+  );
 }

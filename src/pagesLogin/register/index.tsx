@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-04-24 16:04:43
  * @description: Register
  */
-import { View } from "@tarojs/components";
+import { View } from '@tarojs/components';
 
 export default function Register() {
   return (
@@ -14,5 +14,5 @@ export default function Register() {
         注册
       </View>
     </View>
-  )
+  );
 }
