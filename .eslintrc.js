@@ -181,17 +181,18 @@ module.exports = {
         typeof: false
       }
     ],
-    // 定义过的变量必须使用
-    'no-unused-vars': [
-      'error',
-      {
-        vars: 'all',
-        args: 'none',
-        caughtErrors: 'none',
-        ignoreRestSiblings: true,
-        'varsIgnorePattern': 'Taro|React'
-      }
-    ],
+    // 定义过的变量必须使用  因为使用了ts所以关闭eslint默认检查 使用@typescript-eslint/no-unused-vars去控制
+    'no-unused-vars': 'off',
+    // [
+    //   'error',
+    //   {
+    //     vars: 'all',
+    //     args: 'none',
+    //     caughtErrors: 'none',
+    //     ignoreRestSiblings: true,
+    //     'varsIgnorePattern': 'Taro|React'
+    //   }
+    // ],
 
     //
     //
@@ -512,12 +513,23 @@ module.exports = {
         beforeClosing: 'never'
       }
     ],
-    'react-hooks/exhaustive-deps': 'off', // 不检查effect的依赖
+    // 不检查effect的依赖
+    'react-hooks/exhaustive-deps': 'off',
 
     /**
      * ts 规则
      */
     // 关闭对any的警告
-    '@typescript-eslint/no-explicit-any': ['off']
+    '@typescript-eslint/no-explicit-any': ['off'],
+    // 定义过的变量必须使用
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        vars: 'all',
+        args: 'none',
+        caughtErrors: 'none',
+        ignoreRestSiblings: true
+      }
+    ]
   }
 };

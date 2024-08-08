@@ -8,7 +8,7 @@
 import { useEffect } from 'react';
 import { View, Text, Button } from '@tarojs/components';
 import Taro, { useDidShow, useLoad } from '@tarojs/taro';
-import { PAGE } from '@/constants/PAGE';
+import { PAGE, MAIN_PAGE, SUB_PAGE, TABBAR_PAGE } from '@/constants/PAGE';
 import { useAppStore } from '@/store';
 
 import { GetTest, GetTest2, GetTest3, GetTest4 } from '@/api/api';
@@ -36,6 +36,10 @@ export default function Home() {
 
   useEffect(() => {
     console.log('token:>> ', token);
+    console.log('TABBAR_PAGE:>> ', TABBAR_PAGE);
+    console.log('PAGE:>> ', PAGE);
+    console.log('MAIN_PAGE:>> ', MAIN_PAGE);
+    console.log('SUB_PAGE:>> ', SUB_PAGE);
   }, []);
 
   function handleLogin() {

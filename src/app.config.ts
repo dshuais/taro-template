@@ -8,7 +8,7 @@
 import { PAGE_LIST, SUB_PACKAGES, PRELOAD_RULE } from '@/constants/PAGE';
 
 export default defineAppConfig({
-  // 页面
+  // 主包页面
   pages: [...PAGE_LIST],
 
   //  配置分包
