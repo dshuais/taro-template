@@ -25,7 +25,7 @@ export function getAuthToken() {
       // useAppStore.getState().SET_STATE({ openId });
     })
     .catch(err => {
-      console.error(err || '静默授权失败');
+      console.warn('getAuthToken fail:>> ', err);
     });
 }
 

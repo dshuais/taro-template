@@ -17,7 +17,7 @@ export function requestPayment(params: any) {
           resolve('success');
         },
         fail(_err) {
-          console.warn('支付fail:>> ', _err);
+          console.warn('requestPayment fail:>> ', _err);
           reject('fail');
         },
         complete: () => {
@@ -25,7 +25,7 @@ export function requestPayment(params: any) {
         }
       });
     } catch(_err) {
-      console.warn('支付异常:>> ', _err);
+      console.warn('requestPayment error:>> ', _err);
       reject('catch');
     }
   });

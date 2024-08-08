@@ -11,11 +11,11 @@ export function subscribeMessage(params: SubMsg) {
       tmplIds,
       entityIds,
       success: (res) => {
-        console.log('消息订阅成功：', res);
+        console.log('subscribeMessage success:>> ', res);
         resolve(true);
       },
       fail: (err) => {
-        console.log('消息订阅失败：', err);
+        console.warn('subscribeMessage fail:>> ', err);
         reject(err);
       }
     });
@@ -38,9 +38,99 @@ export const openMap = (params: OpenMap) => {
         resolve(true);
       },
       fail: (err) => {
-        console.log('openMap fail:>> ', err);
+        console.warn('openMap fail:>> ', err);
         reject(err);
       }
     });
   });
 };
+
+/**
+ * 监听网络状态
+ */
+export const networkStatusChange = () => {
+  return new Promise<Taro.getNetworkType.SuccessCallbackResult>((resolve, reject) => {
+    Taro.getNetworkType({
+      success(res) {
+        if(res.networkType !== 'none') {
+          setTimeout(() => {
+            // 跳转首页页面
+          }, 500);
+        } else if(res.networkType === 'none') {
+          setTimeout(() => {
+            // 跳转降级页
+          }, 500);
+        }
+        resolve(res);
+      },
+      fail(err) {
+        console.warn('networkStatusChange fail:>> ', err);
+        reject(err);
+      }
+    });
+  });
+};
+
+/**
+ * 保存临时图片到本地
+ */
+export function saveImageToPhotosAlbum(filePath: string) {
+  return new Promise<boolean>((resolve, reject) => {
+    if(!filePath) return console.warn('filePath is empty:>> ');
+    Taro.saveImageToPhotosAlbum({
+      filePath,
+      success: () => {
+        // Taro.showToast({
+        //   title: '保存成功',
+        //   icon: 'none',
+        //   duration: 2000
+        // });
+        resolve(true);
+      },
+      fail: () => {
+        Taro.showModal({
+          title: '提示',
+          content: '请先授权再保存此图片',
+          showCancel: false,
+          success(data) {
+            if(data.confirm) {
+              Taro.openSetting({
+                success(settingdata) {
+                  if(settingdata.authSetting['scope.writePhotosAlbum']) {
+                    Taro.saveImageToPhotosAlbum({
+                      filePath,
+                      success: function() {
+                        resolve(true);
+                      }
+                    });
+                  } else {
+                    // Taro.showModal({
+                    //   title: '提示',
+                    //   content: '授权失败，请稍后重新获取',
+                    //   showCancel: false
+                    // });
+                    console.warn('writePhotosAlbum fail:>> ', false);
+                    reject(false);
+                  }
+                }
+              });
+            }
+          }
+        });
+      }
+    });
+  });
+}
+
+/**
+ * 保存网络图片到本地
+ */
+export function saveNetImageToPhotosAlbum(url: string) {
+  if(!url) return console.warn('url is empty:>> ');
+  Taro.downloadFile({
+    url,
+    success: res => {
+      saveImageToPhotosAlbum(res.tempFilePath);
+    }
+  });
+}
