@@ -1,6 +1,9 @@
 import Taro from '@tarojs/taro';
+// import { useAppStore } from '@/store';
 
-/** 获取登录凭证(code) */
+/**
+ * 获取登录凭证(code)
+ */
 export function getCode() {
   return new Promise((resolve, reject) => {
     Taro.login({
@@ -13,11 +16,15 @@ export function getCode() {
     });
   });
 }
-/** 静默授权用户 wechatId */
+
+/**
+ * 静默授权用户 openId
+ */
 export function getAuthToken() {
   getCode()
     .then(async code => {
-      // const wechatId = await authorize({ code, appId: config.appId });
+      // const openId = await authorize({ code, appId: process.env.TARO_APP_ID });
+      // useAppStore.getState().SET_STATE({ openId });
     })
     .catch(err => {
       console.error(err || '静默授权失败');

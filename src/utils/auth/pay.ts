@@ -1,38 +1,32 @@
 import Taro from '@tarojs/taro';
 
-let ispay = false;
-
 /**
  * 微信支付
  */
-export function requestPayment(result: any) {
-  if(ispay) return;
-  ispay = true;
+export function requestPayment(params: any) {
   return new Promise<string>((resolve, reject) => {
     try {
+      const { timeStamp, nonceStr, package_str, paySign } = params;
       Taro.requestPayment({
-        // appid: result.appid,
-        // provider: 'wxpay',
-        timeStamp: `${result.timestamp}`,
-        nonceStr: result.nonce_str,
-        package: result.package_str,
+        timeStamp,
+        nonceStr,
+        package: package_str,
         signType: 'MD5',
-        paySign: result.sign,
+        paySign,
         success() {
-          ispay = false;
           resolve('success');
         },
         fail(_err) {
-          ispay = false;
+          console.warn('支付fail:>> ', _err);
           reject('fail');
         },
         complete: () => {
           resolve('complete');
-          ispay = false;
         }
       });
-    } catch(e) {
-      ispay = false;
+    } catch(_err) {
+      console.warn('支付异常:>> ', _err);
+      reject('catch');
     }
   });
 }

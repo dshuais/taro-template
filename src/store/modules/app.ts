@@ -5,6 +5,7 @@ import { sessionStorage } from '../store';
 
 // define the initial state
 const initialState = () => ({
+  openId: '',
   token: ''
 });
 
