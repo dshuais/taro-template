@@ -80,7 +80,8 @@ export default defineConfig(async (merge, { command, mode }) => {
               plugin: UnifiedWebpackPluginV5,
               args: [
                 {
-                  appType: 'taro'
+                  appType: 'taro',
+                  rem2rpx: true // 代替了postcssconfig内的postcss-rem-to-responsive-pixel插件
                 }
               ]
             }
