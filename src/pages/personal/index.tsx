@@ -2,11 +2,12 @@
  * @Author: dushuai
  * @Date: 2024-04-24 16:01:26
  * @LastEditors: dushuai
- * @LastEditTime: 2024-08-01 20:47:34
+ * @LastEditTime: 2024-08-10 16:48:37
  * @description: Personal
  */
-import Test from '@/components/Base/Test';
 import { View } from '@tarojs/components';
+import Test from '@/components/Base/Test';
+import TestOid from '@/components/Base/Test/TestOid';
 
 export default function Personal() {
   return (
@@ -17,6 +18,7 @@ export default function Personal() {
       <span>我是span</span>
 
       <Test title="我是测试" />
+      <TestOid />
     </View>
   );
 }

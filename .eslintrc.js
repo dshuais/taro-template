@@ -31,13 +31,13 @@ module.exports = {
    * 也可关闭no-undef: 'off'，关闭后会自动使用ts校验
    * 我为了使用eslint的验证，所以选择了手动配置全局变量
    */
-  globals: {
-    defineAppConfig: true,
-    definePageConfig: true,
-    Res: true,
-    Req: true,
-    NodeJS: true
-  },
+  // globals: {
+  //   defineAppConfig: true,
+  //   definePageConfig: true,
+  //   Res: true,
+  //   Req: true,
+  //   NodeJS: true
+  // },
   rules: {
     // 屏蔽import/no-commonjs提示
     'import/no-commonjs': 'off',
@@ -175,12 +175,13 @@ module.exports = {
     // 禁止使用保留字作为变量名
     'no-shadow-restricted-names': 'error',
     // 禁止使用未定义的变量
-    'no-undef': [
-      'error',
-      {
-        typeof: false
-      }
-    ],
+    'no-undef': 'off',
+    // [
+    //   'error',
+    //   {
+    //     typeof: false
+    //   }
+    // ],
     // 定义过的变量必须使用  因为使用了ts所以关闭eslint默认检查 使用@typescript-eslint/no-unused-vars去控制
     'no-unused-vars': 'off',
     // [

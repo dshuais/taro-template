@@ -1,3 +1,10 @@
+/*
+ * @Author: dushuais
+ * @Date: 2024-08-08 20:43:16
+ * @LastEditors: dushuai
+ * @LastEditTime: 2024-08-10 11:08:13
+ * @Description: appstore
+ */
 import { create } from 'zustand';
 import { createJSONStorage, persist, combine } from 'zustand/middleware';
 import { StoreKey } from '@/constants/enums';
@@ -56,5 +63,11 @@ export const useAppStore = create(persist(
 
       return state;
     }
+
+    // Filter the persisted value. By default, everything is persisted.
+    // partialize: state => ({
+    //   openId: state.openId,
+    //   token: state.token
+    // })
   }
 ));
