@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-08-04 15:22:19
  * @LastEditors: dushuai
- * @LastEditTime: 2024-08-04 15:33:50
+ * @LastEditTime: 2024-09-09 20:32:31
  * @Description: CustomTabBar
  */
 // import { useMemo } from 'react';
@@ -11,6 +11,8 @@ import { View, Image } from '@tarojs/components';
 import classNames from 'classnames';
 
 import { useSelector, useCommonStore } from '@/store';
+
+import './index.scss';
 
 export default function CustomTabBar() {
 

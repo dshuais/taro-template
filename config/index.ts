@@ -51,7 +51,14 @@ export default defineConfig(async (merge, { mode }) => {
       }
     },
     framework: 'react',
-    compiler: 'webpack5',
+    compiler: {
+      type: 'webpack5',
+      prebundle: {
+        exclude: ['@nutui/nutui-react-taro'],
+        enable: false,
+        force: true
+      }
+    },
 
     // 开启cache持久化缓存
     cache: {
