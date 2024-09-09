@@ -1,0 +1,30 @@
+.UploadWrap-ujt834s {
+  width: 462px;
+  height: 260px;
+  border-radius: 10px;
+  background: #F8F9FD;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  .UploadWrap-img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .UploadWrap-icon {
+    width: 260px;
+    height: 160px;
+    background-image: url(https://platform-star-bucket.oss-cn-wuhan-lr.aliyuncs.com/dev/1039666015270625360.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .UploadWrap-title {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 34px;
+  }
+}

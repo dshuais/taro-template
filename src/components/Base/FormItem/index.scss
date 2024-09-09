@@ -1,0 +1,41 @@
+.FormItem-tyu091m {
+  &-label {
+    width: 180px;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 33px;
+    color: #1C234C;
+  }
+
+  &-border {
+    border-bottom: 1px solid #eee;
+  }
+
+  &-arrows {
+    color: rgba(28, 35, 76, 0.5);
+  }
+
+  input {
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 38px;
+    color: #1C234C;
+    text-align: right;
+    flex: 1;
+  }
+
+  textarea {
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 38px;
+    color: #1C234C;
+    flex: 1;
+  }
+
+  .input-placeholder {
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 38px;
+    color: rgba(28, 35, 76, 0.5);
+  }
+}

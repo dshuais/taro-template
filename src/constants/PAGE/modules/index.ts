@@ -1,9 +1,11 @@
-import login, { LoginPage } from './login';
+import user, { UserPage } from './user';
 import detail, { DetailPage } from './detail';
+import other, { OtherPage } from './other';
 
 const packs = {
-  login,
-  detail
+  user,
+  detail,
+  other
 };
 
 export type Key = keyof typeof packs;
@@ -24,4 +26,4 @@ if(loadPackageNames.length) {
 /** 所有分包 */
 export const packages = packsList;
 
-export type PageModule = LoginPage & DetailPage;
+export type PageModule = UserPage & DetailPage & OtherPage;

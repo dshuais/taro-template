@@ -13,7 +13,22 @@ import { sessionStorage } from '../store';
 // define the initial state
 const initialState = () => ({
   openId: '',
-  token: ''
+  token: '',
+  userInfo: {},
+  isLogin: false,
+
+  adress: {
+    nation: '',
+    province: '',
+    city: '',
+    district: '',
+    street: '',
+    street_number: ''
+  },
+  coord: {
+    latitude: 0,
+    longitude: 0
+  }
 });
 
 type State = ReturnType<typeof initialState>;

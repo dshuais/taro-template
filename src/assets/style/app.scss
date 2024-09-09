@@ -2,8 +2,49 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-.iphoneX {
+@import './iconfont';
+
+.ios {
   padding-bottom: 0;
   padding-bottom: constant(safe-area-inset-bottom) !important;
   padding-bottom: env(safe-area-inset-bottom) !important;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #F1F5FE;
+}
+
+.common-header {
+  background-image: url(https://platform-star-bucket.oss-cn-wuhan-lr.aliyuncs.com/dev/1036062768354054193.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.loading-text {
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 36px;
+  color: rgba(28, 35, 76, 0.5);
+  text-align: center;
+  margin-top: 32px;
+}
+
+.richImg {
+  max-width: 100%;
+  height: auto;
+}
+
+.btn-reset {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  line-height: inherit;
+
+  &::after {
+    border: none;
+    border-radius: 0;
+    height: auto;
+  }
 }

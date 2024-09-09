@@ -6,8 +6,6 @@
  * @description: Personal
  */
 import { View } from '@tarojs/components';
-import Test from '@/components/Base/Test';
-import TestOid from '@/components/Base/Test/TestOid';
 
 export default function Personal() {
   return (
@@ -16,9 +14,6 @@ export default function Personal() {
       <div>我是最新的标签</div>
       <p>我是p</p>
       <span>我是span</span>
-
-      <Test title="我是测试" />
-      <TestOid />
     </View>
   );
 }

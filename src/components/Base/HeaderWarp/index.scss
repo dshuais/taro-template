@@ -1,0 +1,65 @@
+.HeaderWrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000; // 自定义头部，层级最高(模拟真实头部) 这个位置要比弹窗底
+  transition: background 0.3s ease-in;
+
+  .title-wrap {
+    display: flex;
+    align-items: center;
+    font-size: 32px;
+    padding-right: 66px;
+
+    .go-back {
+      width: 34px;
+      height: 34px;
+      background-image: url('../../../assets/images/common/back.png');
+      background-repeat: no-repeat;
+      background-size: auto 100%;
+      margin-left: 32px;
+      cursor: pointer;
+    }
+
+    .inner-content {
+      // display: inline-block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+      flex: 1;
+      font-weight: 500;
+      font-size: 32px;
+
+      &.ios-title {
+        text-align: center;
+      }
+
+      &.android-title {
+        font-weight: bold;
+        text-align: center;
+      }
+
+      &.title-center {
+        text-align: center;
+      }
+    }
+  }
+
+  .head-wrap {
+    display: flex;
+    align-items: center;
+  }
+
+  &-max-text {
+    max-width: 400px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-clamp: 1;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+}

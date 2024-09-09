@@ -17,4 +17,13 @@ declare namespace Res {
     msg: string
   }
 
+  interface Record<T = unknown> {
+    pageNum: number
+    pageSize: number
+    record: T
+    totalRecord: number
+    totalPage: number
+    summary: unknown
+  }
+
 }

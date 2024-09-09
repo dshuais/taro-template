@@ -5,11 +5,11 @@ import devConfig from './dev';
 import prodConfig from './prod';
 
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
-export default defineConfig(async (merge, { command, mode }) => {
+export default defineConfig(async (merge, { mode }) => {
 
-  const isProd = mode === 'production';
+  // const isProd = mode === 'production';
   const isDev = mode === 'development';
-  const isTest = mode === 'test';
+  // const isTest = mode === 'test';
 
   const baseConfig: UserConfigExport = {
     projectName: 'taro-app',
@@ -34,6 +34,7 @@ export default defineConfig(async (merge, { command, mode }) => {
       }]
     ],
     defineConstants: {
+      LOCATION_APIKEY: JSON.stringify('U4MBZ-3U3OQ-AHF5G-BNXOC-IKJ3O-FFFOJ')
     },
     copy: {
       patterns: [
@@ -63,6 +64,10 @@ export default defineConfig(async (merge, { command, mode }) => {
             limit: 1024 // 设定转换尺寸上限
           }
         },
+        optimizeMainPackage: {
+          enable: true,
+          exclude: []
+        },
         cssModules: {
           enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
           config: {
@@ -73,6 +78,13 @@ export default defineConfig(async (merge, { command, mode }) => {
       },
       webpackChain(chain) {
         chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin);
+
+        chain.merge({
+          performance: {
+            maxEntrypointSize: 1024 * 1024 * 2,
+            maxAssetSize: 1024 * 1024 * 2
+          }
+        });
 
         chain.merge({
           plugin: {

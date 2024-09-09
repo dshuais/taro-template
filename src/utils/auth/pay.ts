@@ -6,12 +6,12 @@ import Taro from '@tarojs/taro';
 export function requestPayment(params: any) {
   return new Promise<string>((resolve, reject) => {
     try {
-      const { timeStamp, nonceStr, package_str, paySign } = params;
+      const { timeStamp, nonceStr, package_str, paySign, signType = 'MD5' } = params;
       Taro.requestPayment({
         timeStamp,
         nonceStr,
         package: package_str,
-        signType: 'MD5',
+        signType,
         paySign,
         success() {
           resolve('success');
@@ -30,3 +30,4 @@ export function requestPayment(params: any) {
     }
   });
 }
+

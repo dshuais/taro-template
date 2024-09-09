@@ -9,12 +9,12 @@
 /**
  * 分包根目录
  */
-const root = '/pagesLogin';
+const root = '/pagesUser';
 
 /**
  * 分包别名
  */
-const name = '登录module';
+const name = '用户module';
 
 /**
  * 分包页面路径
@@ -29,4 +29,4 @@ const page = {
 
 export default { root, name, page };
 
-export type LoginPage = typeof page;
+export type UserPage = typeof page;

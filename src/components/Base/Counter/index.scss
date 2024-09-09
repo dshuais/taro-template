@@ -1,0 +1,27 @@
+.Counter-yut223s {
+  display: flex;
+  align-items: center;
+
+  &--icon {
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  &--subtract {
+    background-image: url(https://platform-star-bucket.oss-cn-wuhan-lr.aliyuncs.com/dev/1039344949851611162.png);
+  }
+  &--plus {
+    background-image: url(https://platform-star-bucket.oss-cn-wuhan-lr.aliyuncs.com/dev/1039344949847416840.png);
+  }
+
+  &--value {
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 40px;
+    color: #314259;
+    margin: 0 24px;
+  }
+
+}

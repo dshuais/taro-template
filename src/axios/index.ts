@@ -8,6 +8,7 @@
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import qs from 'qs';
 import { useAppStore } from '@/store';
+import { uuid } from '@/utils/utils';
 // import { cancelRequest } from './requestCancel'
 import ErrorCodeHandle from './requestCode';
 
@@ -25,12 +26,9 @@ const service = axios.create({
 // 请求拦截
 service.interceptors.request.use(
   (config: InternalAxiosRequestConfig<unknown>) => {
-    // 添加token
-    const token = useAppStore.getState().token;
 
-    if(token) {
-      config.headers['token'] = token;
-    }
+    // 添加请求头
+    Object.assign(config.headers, getHeaders());
 
     // cancelRequest.addPending(config) // 添加当前请求至请求列表
 
@@ -189,4 +187,27 @@ export function del<T = unknown>(url: string, params?: unknown) {
         reject(error);
       });
   });
+}
+
+/**
+ * 获取自定义请求头
+ * @returns
+ */
+export function getHeaders() {
+  const headers = {};
+  const token = useAppStore.getState().token;
+
+  if(token) {
+    headers['X-Request-Token'] = token;
+  }
+
+  Object.assign(headers, {
+    'platform-timestamp': Date.now(),
+    'platform-nonce': uuid(),
+    'X-Request-Appid': process.env.TARO_APP_ID,
+
+    'X-Request-AccountType': 0
+  });
+
+  return headers;
 }

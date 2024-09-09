@@ -23,7 +23,8 @@ export default defineAppConfig({
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#fff',
     navigationBarTitleText: 'Taro Demo',
-    navigationBarTextStyle: 'black'
+    navigationBarTextStyle: 'black',
+    backgroundColor: '#F6F9FD'
   },
 
   // tabbar
@@ -51,5 +52,12 @@ export default defineAppConfig({
 
   usingComponents: {},
   requiredBackgroundModes: [], // 'audio', 'location'
-  lazyCodeLoading: 'requiredComponents'
+  lazyCodeLoading: 'requiredComponents',
+
+  permission: {
+    'scope.userLocation': {
+      desc: '是否允许获取你当前的地理位置信息？'
+    }
+  },
+  requiredPrivateInfos: ['getLocation', 'chooseLocation']
 });

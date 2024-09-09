@@ -1,3 +1,4 @@
+import $toast from './toast';
 import { getSystemInfo } from './tools';
 
 /** rpx 转换为 px */
@@ -281,3 +282,51 @@ export function deepClone<T>(source: T): T {
 
   return targetObj;
 }
+
+/**
+ * 处理富文本图片
+ * @param text
+ * @returns
+ */
+export function disposeRichImg(text: string):string {
+  if(!text) return '';
+
+  return text.replace(/<img/g, '<img class="richImg"');
+
+}
+
+/**
+ * form表单校验规则
+ * @param rules 规则
+ * @param data 已填写的数据
+ * @returns boolean
+ */
+export function validate<T extends object>(rules: App.Valid[], data: T) {
+  const result: App.Valid[] = [];
+
+  const some = rules.some(r => {
+    if(!data[r.key]) result.push(r);
+    return !data[r.key];
+  });
+
+  if(!some) return true;
+
+  $toast.show(result[0].msg || '请填写完整信息');
+
+  return false;
+}
+
+/**
+ * uuid
+ */
+export const uuid = () => {
+  const s: (string | number)[] = [];
+  const hexDigits = '0123456789abcdef';
+  for(let i = 0; i < 36; i++) s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+
+  s[14] = '4'; // bits 12-15 of the time_hi_and_version field to 0010
+  s[19] = hexDigits.substr((s[19] as number & 0x3) | 0x8, 1);
+  // bits 6-7 of the clock_seq_hi_and_reserved to 01
+  s[8] = s[13] = s[18] = s[23] = '-';
+  return s.join('');
+};
