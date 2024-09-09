@@ -1,0 +1,40 @@
+.CustomTabBar-nb3sp97 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 99;
+  box-shadow: 0px -2px 0px 0px rgba(0, 0, 0, 0.02);
+
+  .CustomTabBar {
+    &-wrapper {
+      display: flex;
+      height: 96px;
+    }
+
+    &-item {
+      flex: 1 1;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      &-icon {
+        width: 54px;
+        height: 54px;
+        margin-bottom: 4px;
+      }
+
+      &-text {
+        font-size: 20px;
+        color: #999999;
+
+        &.is-active {
+          color: #4989ff;
+        }
+      }
+    }
+  }
+}

@@ -12,4 +12,12 @@ declare namespace App {
     msg?: string
   }
 
+  type Tabbar = {
+    key: string
+    text: string
+    pagePath: string
+    iconPath: string
+    selectedIconPath: string
+  }
+
 }
