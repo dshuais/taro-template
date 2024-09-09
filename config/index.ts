@@ -14,7 +14,15 @@ export default defineConfig(async (merge, { mode }) => {
   const baseConfig: UserConfigExport = {
     projectName: 'taro-app',
     date: '2024-4-23',
-    designWidth: 750, // 设计稿750
+    // designWidth: 750, // 设计稿750
+    designWidth(input: any) {
+      // 配置 NutUI 375 尺寸
+      if(input?.file?.replace(/\\+/g, '/').indexOf('@nutui') > -1) {
+        return 375;
+      }
+      // 全局使用 Taro 默认的 750 尺寸
+      return 750;
+    },
 
     // 设计稿转换规则
     deviceRatio: {
