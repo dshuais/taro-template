@@ -34,13 +34,7 @@ export default defineConfig(async (merge, { mode }) => {
 
     sourceRoot: 'src',
     outputRoot: 'dist',
-    plugins: [
-      '@tarojs/plugin-http',
-      ['@tarojs/plugin-html', {
-        // 包含 `demo-`、`van-` 的类名选择器中的 px 单位不会被解析
-        pxtransformBlackList: [/demo-/, /van-/]
-      }]
-    ],
+    plugins: ['@tarojs/plugin-http', '@tarojs/plugin-html'],
     defineConstants: {
       LOCATION_APIKEY: JSON.stringify('U4MBZ-3U3OQ-AHF5G-BNXOC-IKJ3O-FFFOJ')
     },
@@ -70,7 +64,8 @@ export default defineConfig(async (merge, { mode }) => {
         pxtransform: {
           enable: true,
           config: {
-
+            // 包含 `nut-` 的类名选择器中的 px 单位不会被解析
+            selectorBlackList: ['nut-']
           }
         },
         url: {
