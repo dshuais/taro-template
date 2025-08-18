@@ -17,12 +17,15 @@ importers:
       '@spacego/classnames':
         specifier: ^1.0.0
         version: 1.0.0
+      '@spacego/dayjs':
+        specifier: ^1.0.2
+        version: 1.0.2
       '@spacego/is':
         specifier: ^1.0.1
         version: 1.0.1
       '@spacego/taro-components':
-        specifier: 0.0.1-alpha.3
-        version: 0.0.1-alpha.3
+        specifier: ^0.0.12
+        version: 0.0.12
       '@spacego/tools-taro':
         specifier: ^1.0.0
         version: 1.0.0
@@ -1415,11 +1418,14 @@ packages:
   '@spacego/classnames@1.0.0':
     resolution: {integrity: sha512-XD9XZykVq75iP81mUALY+dtkypOTqfapBl0cVBq/pd+kkdMz4i4gikCgp6SNbUp63QHHi9ADU/JjEMveMAqXPQ==}
 
+  '@spacego/dayjs@1.0.2':
+    resolution: {integrity: sha512-hhRwhr3zhEVG/cgB8oFkOBldkZKwa8/DDkIi/dW9YjcPfQ4wL0QtflvFarjUBVhjqi4V7d0hAwTW7H6HrydPKw==}
+
   '@spacego/is@1.0.1':
     resolution: {integrity: sha512-BGqPI/bWIhNhDtOVSPiC8LvRnsNED04tkGSToyCpROirg3DFAIlFxQ46HRWLNcZCgCZck7l1gKr4cUfRkoyoBQ==}
 
-  '@spacego/taro-components@0.0.1-alpha.3':
-    resolution: {integrity: sha512-ZN3kqS/Z8VU8GgcABQ+h1IpZuFsVIMqPT2PEczmD2h+/3bMuulVropnEJJD6m8Pa+n1EITIx+P2u/WYbwN0YrA==}
+  '@spacego/taro-components@0.0.12':
+    resolution: {integrity: sha512-z3Sp58E2mzM2ED1u/LY1yd4I1xSCn8ORHkKeyOlz4QYNY2yVY1ej0Zr+T/MeuoQXqsvdpez6IV2reOSGb0dPtg==}
 
   '@spacego/tools-taro@1.0.0':
     resolution: {integrity: sha512-zFgc5hVQQbIEPL6Am2kBC3ERQ5wunKioixpWNwnYOISEsFSs8aPzY+gNf2Mhb6ZFlzqMAkCyzEh7dXWSov8iEg==}
@@ -9820,9 +9826,13 @@ snapshots:
 
   '@spacego/classnames@1.0.0': {}
 
+  '@spacego/dayjs@1.0.2':
+    dependencies:
+      dayjs: 1.11.13
+
   '@spacego/is@1.0.1': {}
 
-  '@spacego/taro-components@0.0.1-alpha.3': {}
+  '@spacego/taro-components@0.0.12': {}
 
   '@spacego/tools-taro@1.0.0': {}
 

@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-04-23 18:33:22
  * @LastEditors: dushuai
- * @LastEditTime: 2025-05-16 00:48:04
+ * @LastEditTime: 2025-08-19 00:38:45
  * @description: index
  */
 import { useEffect } from 'react';
@@ -12,7 +12,7 @@ import Taro, { useDidShow, useLoad } from '@tarojs/taro';
 import { PAGE, MAIN_PAGE, SUB_PAGE, TABBAR_PAGE } from '@/constants/PAGE';
 import { useAppStore } from '@/store';
 import { Button as NutButton, Popup } from '@nutui/nutui-react-taro';
-import { FeHeaderWarp } from '@spacego/taro-components';
+import { FeHeaderWarp, FeButton } from '@spacego/taro-components';
 
 import { GetTest, GetTest2, GetTest3, GetTest4 } from '@/api/api';
 import { getSystemInfo } from '@/utils/tools';
@@ -76,7 +76,10 @@ export default function Home() {
 
   return (
     <View className="index">
-      <FeHeaderWarp needFill showGoBack />
+      <FeHeaderWarp needFill showGoBack title="标题" />
+
+      <FeButton color="primary" shape="round" type="primary" size="large" fill="dashed">组件库的按钮</FeButton>
+      {/* <FeImage src="https://storage.360buyimg.com/imgtools/e067cd5b69-07c864c0-dd02-11ed-8b2c-d7f58b17086a.png" /> */}
       <Text className="title">Hello world! 2 ==== {token}</Text>
       <Text>{process.env.TARO_ENV}</Text>
       <NutButton type="primary" onClick={() => setState({ show: true })}>
